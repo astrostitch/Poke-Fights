@@ -4,7 +4,7 @@ import random
 from pprint import pprint
 
 
-
+#collect all the info of the player
 def GetPlayerProfile(PokemonList):
   return {
     "player_name": input("como te llamas joven aventurero?\n"),
@@ -15,20 +15,14 @@ def GetPlayerProfile(PokemonList):
   }
 
 
-
-
-
-
-
-
 def main():
   PokemonList = GetAllPokemons()
   PlayerProfile = GetPlayerProfile(PokemonList)
-  #pprint(PlayerProfile)
+  #loop to continue the game if at least 1 player pokemon is alive
   while PlayerPokemonLive(PlayerProfile) > 0:
     EnemyPokemon = random.choice(PokemonList)
     fight(PlayerProfile, EnemyPokemon)
-  print("has perdido en el combate numero: {}".format(PlayerProfile["combats"]))
+  print("you lost in the fight: {}".format(PlayerProfile["combats"]))
 
 
 
