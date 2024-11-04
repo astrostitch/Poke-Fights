@@ -39,6 +39,29 @@ def ChoosePokemon(PlayerProfile):
 
 #the loop for the attack of the player
 def PlayerAttack(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory):
+
+  """implementar multiplicadores por tipo de pokemon
+    Normal: débil frente a Lucha
+    Fuego: débil frente a Agua, Tierra, Roca
+    Agua: débil frente a Planta, Eléctrico
+    Planta: débil frente a Fuego, Hielo, Veneno, Volador, Bicho
+    Eléctrico: débil frente a Tierra
+    Hielo: débil frente a Fuego, Lucha, Roca, Acero
+    Lucha: débil frente a Volador, Psíquico, Hada
+    Veneno: débil frente a Tierra, Psíquico
+    Tierra: débil frente a Agua, Planta, Hielo
+    Volador: débil frente a Eléctrico, Hielo, Roca
+    Psíquico: débil frente a Bicho, Fantasma, Siniestro
+    Bicho: débil frente a Volador, Roca, Fuego
+    Roca: débil frente a Agua, Planta, Lucha, Tierra, Acero
+    Fantasma: débil frente a Fantasma, Siniestro
+    Dragón: débil frente a Hielo, Dragón, Hada
+    Siniestro: débil frente a Lucha, Bicho, Hada
+    Acero: débil frente a Fuego, Lucha, Tierra
+    Hada: débil frente a Veneno, Acero
+    *1.25
+    cuando se elije el ataque del usuario solo se muestran ataques disponibles por nivel"""
+  
   attack = None
   while not attack:
     print("------------------------")
