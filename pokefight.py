@@ -4,57 +4,58 @@ import random
 
 #collect the important pokemon info
 def PokemonInfo(pokemon):
-  return "{} | LVL {} | Health {}/{}".format(pokemon["name"], 
+  return "{} | LVL {} | Health {}/{} | Type {}".format(pokemon["name"], 
                                              pokemon["level"], 
                                              pokemon["CurrentHealth"], 
-                                             pokemon["BaseHealth"])
+                                             pokemon["BaseHealth"],
+                                             pokemon["type"])
 
 
 #library of weakness for each type
 TypeDividers = {
-"Normal": ["Lucha"],
-"Fuego": ["Agua", "Tierra", "Roca"],
-"Agua": ["Planta", "Eléctrico"],
-"Planta": ["Fuego", "Hielo", "Veneno", "Volador", "Bicho"],
-"Eléctrico": ["Tierra"],
-"Hielo": ["Fuego", "Lucha", "Roca", "Acero"],
-"Lucha": ["Volador", "Psíquico", "Hada"],
-"Veneno": ["Tierra", "Psíquico"],
-"Tierra": ["Agua", "Planta", "Hielo"],
-"Volador": ["Eléctrico", "Hielo", "Roca"],
-"Psíquico": ["Bicho", "Fantasma", "Siniestro"],
-"Bicho": ["Fuego", "Volador", "Roca"],
-"Roca": ["Agua", "Planta", "Lucha", "Tierra", "Acero"],
-"Fantasma": ["Fantasma", "Siniestro"],
-"Dragón": ["Hielo", "Dragón", "Hada"],
-"Siniestro": ["Lucha", "Bicho", "Hada"],
-"Acero": ["Fuego", "Lucha", "Tierra"],
-"Hada": ["Veneno", "Acero"]
-} 
+  "normal": ["lucha"],
+  "fuego": ["agua", "tierra", "roca"],
+  "agua": ["planta", "eléctrico"],
+  "planta": ["fuego", "hielo", "veneno", "volador", "bicho"],
+  "eléctrico": ["tierra"],
+  "hielo": ["fuego", "lucha", "roca", "acero"],
+  "lucha": ["volador", "psíquico", "hada"],
+  "veneno": ["tierra", "psíquico"],
+  "tierra": ["agua", "planta", "hielo"],
+  "volador": ["eléctrico", "hielo", "roca"],
+  "psíquico": ["bicho", "fantasma", "siniestro"],
+  "bicho": ["fuego", "volador", "roca"],
+  "roca": ["agua", "planta", "lucha", "tierra", "acero"],
+  "fantasma": ["fantasma", "siniestro"],
+  "dragón": ["hielo", "dragón", "hada"],
+  "siniestro": ["lucha", "bicho", "hada"],
+  "acero": ["fuego", "lucha", "tierra"],
+  "hada": ["veneno", "acero"]
+}
     
     
-
 #library of strengths for each type
 TypeMultipliers = {
-    "Normal": [],
-    "Fuego": ["Planta", "Hielo", "Bicho", "Acero"],
-    "Agua": ["Fuego", "Tierra", "Roca"],
-    "Planta": ["Agua", "Tierra", "Roca"],
-    "Eléctrico": ["Agua", "Volador"],
-    "Hielo": ["Planta", "Tierra", "Volador", "Dragón"],
-    "Lucha": ["Normal", "Hielo", "Roca", "Siniestro", "Acero"],
-    "Veneno": ["Planta", "Hada"],
-    "Tierra": ["Fuego", "Eléctrico", "Veneno", "Roca", "Acero"],
-    "Volador": ["Planta", "Lucha", "Bicho"],
-    "Psíquico": ["Lucha", "Veneno"],
-    "Bicho": ["Planta", "Psíquico", "Siniestro"],
-    "Roca": ["Fuego", "Hielo", "Volador", "Bicho"],
-    "Fantasma": ["Psíquico", "Fantasma"],
-    "Dragón": ["Dragón"],
-    "Siniestro": ["Psíquico", "Fantasma"],
-    "Acero": ["Hielo", "Roca", "Hada"],
-    "Hada": ["Lucha", "Dragón", "Siniestro"]
+  "normal": [],
+  "fuego": ["planta", "hielo", "bicho", "acero"],
+  "agua": ["fuego", "tierra", "roca"],
+  "planta": ["agua", "tierra", "roca"],
+  "eléctrico": ["agua", "volador"],
+  "hielo": ["planta", "tierra", "volador", "dragón"],
+  "lucha": ["normal", "hielo", "roca", "siniestro", "acero"],
+  "veneno": ["planta", "hada"],
+  "tierra": ["fuego", "eléctrico", "veneno", "roca", "acero"],
+  "volador": ["planta", "lucha", "bicho"],
+  "psíquico": ["lucha", "veneno"],
+  "bicho": ["planta", "psíquico", "siniestro"],
+  "roca": ["fuego", "hielo", "volador", "bicho"],
+  "fantasma": ["psíquico", "fantasma"],
+  "dragón": ["dragón"],
+  "siniestro": ["psíquico", "fantasma"],
+  "acero": ["hielo", "roca", "hada"],
+  "hada": ["lucha", "dragón", "siniestro"]
 }
+
   
 
 #collect the important info of the pokemon attacks
@@ -85,28 +86,26 @@ def ChoosePokemon(PlayerProfile):
 
 
 def ChangeDamage(attack, EnemyPokemon, Div, Mult, BaseDamage):
-  print(EnemyPokemon["type"])
-
-  if EnemyPokemon["type"] in Div.get(attack["type"], [EnemyPokemon["type"]]):
+  
+  if EnemyPokemon["type"] in Div.get(attack["type"], []):
     attack["damage"] /= 1.25
     print("The attack has receive a 1.25 penalty for pokemon resistances")
     print("Base damage: {} | Current damage: {}".format(BaseDamage, attack["damage"]))
     sleep(1)
     return attack["damage"]
-  elif EnemyPokemon["type"] in Mult.get(attack["type"], [EnemyPokemon["type"]]):
+  elif EnemyPokemon["type"] in Mult.get(attack["type"], []):
     attack["damage"] *= 1.25
     print("The attack has receive a 1.25 multiply for pokemon resistances")
     print("Base damage: {} | Current damage: {}".format(BaseDamage, attack["damage"]))
     sleep(1)
     return attack["damage"]
+  return attack["damage"]
 
     
   
 #the loop for the attack of the player
 def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory, EnemyAttack):
 
-  
-    #1.25
     #cuando se elije el ataque del usuario solo se muestran ataques disponibles por nivel
     
   
@@ -128,9 +127,9 @@ def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory, EnemyA
   Mult = TypeMultipliers
   BaseDamage = attack["damage"]
   multiplier = ChangeDamage(attack, EnemyPokemon, Div, Mult, BaseDamage)
-  print(multiplier)
+  #print(multiplier)
   EnemyPokemon["CurrentHealth"] -= multiplier
-  multiplier = BaseDamage
+  attack["damage"] = BaseDamage
 
   print("-----------------------------")
   print("The Enemy Health is {}/{}".format(EnemyPokemon["CurrentHealth"],
@@ -153,14 +152,13 @@ def EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, PlayerAtt
   print("\n{} attack with {} and do {} of damage".format(EnemyPokemon["name"],
                                                    SelectAttack["name"],
                                                    SelectAttack["damage"]))
-  
+  print(EnemyAttack)
   Div = TypeDividers
   Mult = TypeMultipliers
-  BaseDamage = PlayerAttack["damage"]
+  BaseDamage = EnemyAttack["damage"]
   multiplier = ChangeDamage(EnemyAttack, PlayerPokemon, Div, Mult,BaseDamage)
-  print(multiplier)
   EnemyPokemon["CurrentHealth"] -= multiplier
-  multiplier = BaseDamage
+  EnemyAttack["damage"] = BaseDamage
   
   PlayerPokemon["CurrentHealth"] -= SelectAttack["damage"]
 
@@ -174,10 +172,11 @@ def EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, PlayerAtt
         print("---- GAME OVER!? ----")
         print("------------------------")
         return PlayerPokemonLive(PlayerProfile)
-      sleep(1)
-      print("\n-----------------------------------------------")
-      print("your pokemon died, choose another one to fight...")
-      print("-----------------------------------------------")
+      else:
+        sleep(1)
+        print("\n-----------------------------------------------")
+        print("your pokemon died, choose another one to fight...")
+        print("-----------------------------------------------")
   input("press any key to continue...")
 
 
@@ -200,6 +199,9 @@ def fight(PlayerProfile, EnemyPokemon):
 
   print("---- NEW FIGHT ----\n")
 
+  print("--------------------------------")
+  print("tu adversario sera: {}".format(PokemonInfo(EnemyPokemon)))
+  print("--------------------------------")
   PlayerPokemon = ChoosePokemon(PlayerProfile)
   AttackHistory = []
 
@@ -213,8 +215,11 @@ def fight(PlayerProfile, EnemyPokemon):
     if action == "a":
       EnemyAttack = random.choice(EnemyPokemon["attacks"])
       PlayerAttack = PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory, EnemyAttack)
-      
-      EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, PlayerAttack)
+      if EnemyPokemon["CurrentHealth"] > 0:
+        EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, PlayerAttack)
+      else:
+        pass
+
       #check if the player pokemon is alive
     elif action == "h":
       #TODO si hay curas, se aplica, cura 50 de vida hasta llegar a 100, si no tiene no se cura
