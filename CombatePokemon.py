@@ -14,6 +14,8 @@ def GetPlayerProfile(PokemonList):
     "HealthPotion": 0
   }
 
+def ItemLottery(PlayerProfile):
+  """segun aleatorio sumo cura o pokeball"""
 
 def main():
   PokemonList = GetAllPokemons()
@@ -22,6 +24,7 @@ def main():
   while PlayerPokemonLive(PlayerProfile) > 0:
     EnemyPokemon = random.choice(PokemonList)
     fight(PlayerProfile, EnemyPokemon)
+    ItemLottery(PlayerProfile)
   print("you lost in the fight: {}".format(PlayerProfile["combats"]))
 
 

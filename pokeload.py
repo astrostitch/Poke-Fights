@@ -14,14 +14,14 @@ PokemonBase = {
 URLBase = "https://www.pokexperto.net/index2.php?seccion=nds/nationaldex/pkmn&pk="
 URLAttack = "https://www.pokexperto.net/index2.php?seccion=nds/nationaldex/movimientos_nivel&pk="
 
-#conseguir el pokemon que vamos a usar
+#collect the name of the pokemons we are going to use
 def GetPokemon(index):
 
   url = "{}{}".format(URLBase, index)
   urlattacks = "{}{}".format(URLAttack, index) + "#rze"
 
   session = HTMLSession()
-
+  #copy the library of the pokemon
   NewPokemon = PokemonBase.copy()
   PokemonPage = session.get(url)
 
@@ -47,16 +47,16 @@ def GetPokemon(index):
 
 
 
-
+#collect the pokemons and create the file to it
 def GetAllPokemons():
-  try:
+  try: #try to open the file with the pokemons
     print("cargando el archivo de Pokemons...\n")
     with open("pokefile.pkl", "rb") as pokefile: 
       AllPokemons = pickle.load(pokefile)
   except FileNotFoundError:
     print("archivo no encontrado, descargando de la pokedex!...\n")
     AllPokemons = []
-    
+    #collect every pokemon
     for index in range(151):
       AllPokemons.append(GetPokemon(index + 1))
       print("*")
@@ -66,12 +66,3 @@ def GetAllPokemons():
       pickle.dump(AllPokemons, pokefile)
   print("Lista de pokemons cargados!!!")
   return AllPokemons
-
-def main():
-  GetAllPokemons()
-  GetPokemon(GetAllPokemons)
-
-  print(GetPokemon(GetAllPokemons))
-
-if __name__ == "__main__":
-  main()

@@ -10,6 +10,53 @@ def PokemonInfo(pokemon):
                                              pokemon["BaseHealth"])
 
 
+#library of weakness for each type
+TypeDividers = {
+"Normal": ["Lucha"],
+"Fuego": ["Agua", "Tierra", "Roca"],
+"Agua": ["Planta", "Eléctrico"],
+"Planta": ["Fuego", "Hielo", "Veneno", "Volador", "Bicho"],
+"Eléctrico": ["Tierra"],
+"Hielo": ["Fuego", "Lucha", "Roca", "Acero"],
+"Lucha": ["Volador", "Psíquico", "Hada"],
+"Veneno": ["Tierra", "Psíquico"],
+"Tierra": ["Agua", "Planta", "Hielo"],
+"Volador": ["Eléctrico", "Hielo", "Roca"],
+"Psíquico": ["Bicho", "Fantasma", "Siniestro"],
+"Bicho": ["Fuego", "Volador", "Roca"],
+"Roca": ["Agua", "Planta", "Lucha", "Tierra", "Acero"],
+"Fantasma": ["Fantasma", "Siniestro"],
+"Dragón": ["Hielo", "Dragón", "Hada"],
+"Siniestro": ["Lucha", "Bicho", "Hada"],
+"Acero": ["Fuego", "Lucha", "Tierra"],
+"Hada": ["Veneno", "Acero"]
+} 
+    
+    
+
+#library of strengths for each type
+TypeMultipliers = {
+    "Normal": [],
+    "Fuego": ["Planta", "Hielo", "Bicho", "Acero"],
+    "Agua": ["Fuego", "Tierra", "Roca"],
+    "Planta": ["Agua", "Tierra", "Roca"],
+    "Eléctrico": ["Agua", "Volador"],
+    "Hielo": ["Planta", "Tierra", "Volador", "Dragón"],
+    "Lucha": ["Normal", "Hielo", "Roca", "Siniestro", "Acero"],
+    "Veneno": ["Planta", "Hada"],
+    "Tierra": ["Fuego", "Eléctrico", "Veneno", "Roca", "Acero"],
+    "Volador": ["Planta", "Lucha", "Bicho"],
+    "Psíquico": ["Lucha", "Veneno"],
+    "Bicho": ["Planta", "Psíquico", "Siniestro"],
+    "Roca": ["Fuego", "Hielo", "Volador", "Bicho"],
+    "Fantasma": ["Psíquico", "Fantasma"],
+    "Dragón": ["Dragón"],
+    "Siniestro": ["Psíquico", "Fantasma"],
+    "Acero": ["Hielo", "Roca", "Hada"],
+    "Hada": ["Lucha", "Dragón", "Siniestro"]
+}
+  
+
 #collect the important info of the pokemon attacks
 def PokemonAttacks(pokemon):
   return "{} | type: {} | damage: {} ".format(pokemon["name"],
@@ -37,30 +84,31 @@ def ChoosePokemon(PlayerProfile):
       print("unvalid option")
 
 
-#the loop for the attack of the player
-def PlayerAttack(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory):
+def ChangeDamage(attack, EnemyPokemon, Div, Mult, BaseDamage):
+  print(EnemyPokemon["type"])
 
-  """implementar multiplicadores por tipo de pokemon
-    Normal: débil frente a Lucha
-    Fuego: débil frente a Agua, Tierra, Roca
-    Agua: débil frente a Planta, Eléctrico
-    Planta: débil frente a Fuego, Hielo, Veneno, Volador, Bicho
-    Eléctrico: débil frente a Tierra
-    Hielo: débil frente a Fuego, Lucha, Roca, Acero
-    Lucha: débil frente a Volador, Psíquico, Hada
-    Veneno: débil frente a Tierra, Psíquico
-    Tierra: débil frente a Agua, Planta, Hielo
-    Volador: débil frente a Eléctrico, Hielo, Roca
-    Psíquico: débil frente a Bicho, Fantasma, Siniestro
-    Bicho: débil frente a Volador, Roca, Fuego
-    Roca: débil frente a Agua, Planta, Lucha, Tierra, Acero
-    Fantasma: débil frente a Fantasma, Siniestro
-    Dragón: débil frente a Hielo, Dragón, Hada
-    Siniestro: débil frente a Lucha, Bicho, Hada
-    Acero: débil frente a Fuego, Lucha, Tierra
-    Hada: débil frente a Veneno, Acero
-    *1.25
-    cuando se elije el ataque del usuario solo se muestran ataques disponibles por nivel"""
+  if EnemyPokemon["type"] in Div.get(attack["type"], [EnemyPokemon["type"]]):
+    attack["damage"] /= 1.25
+    print("The attack has receive a 1.25 penalty for pokemon resistances")
+    print("Base damage: {} | Current damage: {}".format(BaseDamage, attack["damage"]))
+    sleep(1)
+    return attack["damage"]
+  elif EnemyPokemon["type"] in Mult.get(attack["type"], [EnemyPokemon["type"]]):
+    attack["damage"] *= 1.25
+    print("The attack has receive a 1.25 multiply for pokemon resistances")
+    print("Base damage: {} | Current damage: {}".format(BaseDamage, attack["damage"]))
+    sleep(1)
+    return attack["damage"]
+
+    
+  
+#the loop for the attack of the player
+def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory, EnemyAttack):
+
+  
+    #1.25
+    #cuando se elije el ataque del usuario solo se muestran ataques disponibles por nivel
+    
   
   attack = None
   while not attack:
@@ -72,9 +120,18 @@ def PlayerAttack(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory):
 
     try:
       attack = PlayerPokemon["attacks"][int(input("con cual deseas atacar? "))]
+      print(attack)
     except (ValueError, IndexError):
       print("unvalid attack option!")
-  EnemyPokemon["CurrentHealth"] -= attack["damage"]
+      
+  Div = TypeDividers
+  Mult = TypeMultipliers
+  BaseDamage = attack["damage"]
+  multiplier = ChangeDamage(attack, EnemyPokemon, Div, Mult, BaseDamage)
+  print(multiplier)
+  EnemyPokemon["CurrentHealth"] -= multiplier
+  multiplier = BaseDamage
+
   print("-----------------------------")
   print("The Enemy Health is {}/{}".format(EnemyPokemon["CurrentHealth"],
                                            EnemyPokemon["BaseHealth"]))
@@ -87,15 +144,23 @@ def PlayerAttack(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory):
     print("You Win this fight!")
     print("------------------------")
     Experience(AttackHistory)
-
+  return attack
 
 #the loop for the attack of the enemy
-def EnemyAttack(EnemyPokemon, PlayerPokemon, PlayerProfile):
+def EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, PlayerAttack):
   sleep(1)
-  SelectAttack = random.choice(EnemyPokemon["attacks"])
+  SelectAttack = EnemyAttack
   print("\n{} attack with {} and do {} of damage".format(EnemyPokemon["name"],
                                                    SelectAttack["name"],
                                                    SelectAttack["damage"]))
+  
+  Div = TypeDividers
+  Mult = TypeMultipliers
+  BaseDamage = PlayerAttack["damage"]
+  multiplier = ChangeDamage(EnemyAttack, PlayerPokemon, Div, Mult,BaseDamage)
+  print(multiplier)
+  EnemyPokemon["CurrentHealth"] -= multiplier
+  multiplier = BaseDamage
   
   PlayerPokemon["CurrentHealth"] -= SelectAttack["damage"]
 
@@ -143,22 +208,23 @@ def fight(PlayerProfile, EnemyPokemon):
   while PlayerPokemonLive(PlayerProfile) > 0 and EnemyPokemon["CurrentHealth"] > 0:
     action = None
     #check what the user want to do
-    while action not in ["A", "P", "H", "C"]:
-      action = input("what you want to do: [A]Attack, [P]Pokeball, [H]Health potion, [C]Change")
-    if action == action.lower("A"):
+    while action not in ["a", "P", "H", "C"]:
+      action = input("what you want to do: [A]Attack, [P]Pokeball, [H]Health potion, [C]Change\n").lower()
+    if action == "a":
+      EnemyAttack = random.choice(EnemyPokemon["attacks"])
+      PlayerAttack = PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory, EnemyAttack)
       
-      PlayerAttack(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory)
-      EnemyAttack(EnemyPokemon, PlayerPokemon, PlayerProfile)
+      EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, PlayerAttack)
       #check if the player pokemon is alive
-    elif action == action.lower("H"):
+    elif action == "h":
       #TODO si hay curas, se aplica, cura 50 de vida hasta llegar a 100, si no tiene no se cura
       CurePokemon(PlayerPokemon, PlayerProfile)
-      EnemyAttack(EnemyPokemon)
-    elif action == action.lower("P"):
+      EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack)
+    elif action == "p":
       #TODO SI TIENE POKEBALLS PROBABILIDAD DEL USUARIO SI MENOS SALUD MAS PROBABLE
       CapturePokemon(EnemyPokemon,PlayerProfile)
-    elif action == action.lower("C"):
-      PlayerPokemon = ChoosePokemon(PlayerProfile)s
+    elif action == "c":
+      PlayerPokemon = ChoosePokemon(PlayerProfile)
       
 
       #remove the dead pokemon and select new one
