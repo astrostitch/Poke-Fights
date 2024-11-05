@@ -152,20 +152,20 @@ def EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, PlayerAtt
   print("\n{} attack with {} and do {} of damage".format(EnemyPokemon["name"],
                                                    SelectAttack["name"],
                                                    SelectAttack["damage"]))
-  print(EnemyAttack)
+  #print(EnemyAttack)
   Div = TypeDividers
   Mult = TypeMultipliers
   BaseDamage = EnemyAttack["damage"]
   multiplier = ChangeDamage(EnemyAttack, PlayerPokemon, Div, Mult,BaseDamage)
-  EnemyPokemon["CurrentHealth"] -= multiplier
+  PlayerPokemon["CurrentHealth"] -= multiplier
   EnemyAttack["damage"] = BaseDamage
-  
-  PlayerPokemon["CurrentHealth"] -= SelectAttack["damage"]
 
   print("-------------------------------")
   print("your current health is {}/{}".format(PlayerPokemon["CurrentHealth"],
                                               PlayerPokemon["BaseHealth"]))
+  
   if PlayerPokemon["CurrentHealth"] <= 0: 
+    
       #check if at least 1 player pokemon is alive
       if PlayerPokemonLive(PlayerProfile) <= 0:
         print("\n------------------------")
@@ -177,6 +177,8 @@ def EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, PlayerAtt
         print("\n-----------------------------------------------")
         print("your pokemon died, choose another one to fight...")
         print("-----------------------------------------------")
+        #remove the dead pokemon and select new one
+        PlayerProfile["PokemonInventory"].remove(PlayerPokemon)
   input("press any key to continue...")
 
 
@@ -208,18 +210,19 @@ def fight(PlayerProfile, EnemyPokemon):
   print("\nopponents: {} vs {}\n".format(PokemonInfo(PlayerPokemon), 
                                          PokemonInfo(EnemyPokemon)))
   while PlayerPokemonLive(PlayerProfile) > 0 and EnemyPokemon["CurrentHealth"] > 0:
+
     action = None
     #check what the user want to do
-    while action not in ["a", "P", "H", "C"]:
+    while action not in ["a", "p", "h", "c"]:
       action = input("what you want to do: [A]Attack, [P]Pokeball, [H]Health potion, [C]Change\n").lower()
     if action == "a":
       EnemyAttack = random.choice(EnemyPokemon["attacks"])
       PlayerAttack = PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory, EnemyAttack)
       if EnemyPokemon["CurrentHealth"] > 0:
         EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, PlayerAttack)
-      else:
-        pass
-
+        if PlayerPokemonLive(PlayerProfile) > 0 and PlayerPokemon["CurrentHealth"] <= 0:
+          PlayerPokemon = ChoosePokemon(PlayerProfile)
+      
       #check if the player pokemon is alive
     elif action == "h":
       #TODO si hay curas, se aplica, cura 50 de vida hasta llegar a 100, si no tiene no se cura
@@ -230,13 +233,6 @@ def fight(PlayerProfile, EnemyPokemon):
       CapturePokemon(EnemyPokemon,PlayerProfile)
     elif action == "c":
       PlayerPokemon = ChoosePokemon(PlayerProfile)
-      
-
-      #remove the dead pokemon and select new one
-      PlayerProfile["PokemonInventory"].remove(PlayerPokemon)
-      PlayerPokemon = ChoosePokemon(PlayerProfile)
-
-
 
   print("---- END OF THE FIGHT ----")
   input("press ENTER to continue...")
