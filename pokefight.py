@@ -4,8 +4,7 @@ import random
 
 #collect the important pokemon info
 def PokemonInfo(pokemon):
-  return "{} | LVL {} | Health {}/{} | Type {}".format(pokemon["name"], 
-                                             pokemon["level"], 
+  return "{} | Health {}/{} | Type {}".format(pokemon["name"],  
                                              pokemon["CurrentHealth"], 
                                              pokemon["BaseHealth"],
                                              pokemon["type"])
@@ -151,7 +150,7 @@ def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory):
     print("\n------------------------")
     print("You Win this fight!")
     print("------------------------")
-    Experience(AttackHistory)
+    Experience(AttackHistory, EnemyPokemon)
   return attack
 
 
@@ -217,17 +216,34 @@ def CapturePokemon(EnemyPokemon,PlayerProfile):
   pass
 
 #leveling up the pokemons
-def Experience(AttackHistory):
+def Experience(AttackHistory, EnemyPokemon):
   for pokemon in AttackHistory:
-    points = random.randint(1,5)
-    pokemon["CurrentExp"] += points
-
-    while pokemon["CurrentExp"] > 20:
-      pokemon["CurrentExp"] == 20
-      pokemon["CurrentExp"] -= 20
+    #random points by level of the pokemons
+    if pokemon["level"] < EnemyPokemon["level"]:
+      LowPointPerPFight = 3
+      HighPointPerFigth = 7
+    elif pokemon["level"] > EnemyPokemon["level"]:
+      LowPointPerPFight = 1
+      HighPointPerFigth = 3
+    else:
+      LowPointPerPFight = 1
+      HighPointPerFigth = 5
+    point = random.randint(LowPointPerPFight,HighPointPerFigth)
+    NecessaryPoints = 20
+    pokemon["CurrentExp"] += point   
+    while pokemon["CurrentExp"] > NecessaryPoints:
+      pokemon["CurrentExp"] == NecessaryPoints
+      pokemon["CurrentExp"] -= NecessaryPoints
       pokemon["level"] += 1
-      pokemon["CurrentHealth"] = pokemon["BaseHealth"]
+      NecessaryPoints += 5
+      #increase the live of the pokemons 
+      pokemon["BaseHealth"] += 10
+      pokemon["CurrentHealth"] += 10
+      print("---------------------------------------------------------")
       print("your pokemon has leveled up {}".format(PokemonInfo(pokemon)))
+      print("the live of {} has increase in 10: Current live: {}/{}".format(pokemon["name"], 
+                                                                            pokemon["CurrentHealth"],
+                                                                            pokemon["BaseHealth"]))
 
 #principal loop of the fight
 def fight(PlayerProfile, EnemyPokemon):
@@ -238,6 +254,9 @@ def fight(PlayerProfile, EnemyPokemon):
   print("--------------------------------")
   PlayerPokemon = ChoosePokemon(PlayerProfile)
   AttackHistory = []
+  #multiply enemy pokemon level base on my level
+  if PlayerPokemon["level"] >= EnemyPokemon["level"]:
+    EnemyPokemon["level"] *= 2
 
   print("\nopponents: {} vs {}\n".format(PokemonInfo(PlayerPokemon), 
                                          PokemonInfo(EnemyPokemon)))
@@ -249,8 +268,14 @@ def fight(PlayerProfile, EnemyPokemon):
     while action not in ["a", "p", "h", "c"]:
       action = input("what you want to do: [A]Attack, [P]Pokeball, [H]Health potion, [C]Change\n").lower()
     if action == "a":
-      #random choose the enemy attack
-      EnemyAttack = random.choice(EnemyPokemon["attacks"])
+      
+      #random choose the enemy attack by level
+      for index in range(len(EnemyPokemon["attacks"])):
+        EnemyAttack = EnemyPokemon["attacks"]
+        if EnemyPokemon["level"] >= int(EnemyAttack[index]["MinLevel"]):
+          EnemyAttack = random.choice(EnemyPokemon["attacks"])
+          break
+          
       PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory)
       #check if the enemy health is more than 0
       if EnemyPokemon["CurrentHealth"] > 0:

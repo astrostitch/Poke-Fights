@@ -1,12 +1,13 @@
 from requests_html import HTMLSession
 import pickle
+import random
 
 #libreria base de los pokemon
 PokemonBase = {
   "name": "", 
   "CurrentHealth": 100,
   "BaseHealth": 100,
-  "level": 1,
+  "level": random.randint(1,7),
   "type": "",
   "CurrentExp": 0
 }
@@ -38,7 +39,7 @@ def GetPokemon(index):
     attack = {
       "name": AttackItem.find("td", first = True).find("a", first = True).text,
       "type": AttackItem.find("td")[1].find("img", first = True).attrs["alt"],
-      "MinLevel": int(AttackItem.find("th",first = True).text),
+      "MinLevel": AttackItem.find("th",first = True).text,
       "damage": int(AttackItem.find("td")[3].text.replace("--", "0"))
     }
     NewPokemon["attacks"].append(attack)
