@@ -2,6 +2,7 @@ from pokeload import GetAllPokemons
 from pokefight import fight, PlayerPokemonLive
 import random
 from pprint import pprint
+from time import sleep
 
 
 #collect all the info of the player
@@ -10,12 +11,27 @@ def GetPlayerProfile(PokemonList):
     "player_name": input("como te llamas joven aventurero?\n"),
     "PokemonInventory": [random.choice(PokemonList) for a in range(3)],
     "combats": 0,
-    "pokeballs": 0,
-    "HealthPotion": 0
+    "pokeballs": 1,
+    "HealthPotion": 1
   }
 
 def ItemLottery(PlayerProfile):
-  """segun aleatorio sumo cura o pokeball"""
+  sleep(1)
+  print("it will be assigned by lottery a pokeball or a health potion")
+  HealthPotion = PlayerProfile["HealthPotion"]
+  pokeballs = PlayerProfile["pokeballs"]
+  print("current pokeballs: {} | current healt potions: {}".format(pokeballs, HealthPotion))
+  ChoiceList = [HealthPotion, pokeballs]
+  choose = random.choice(ChoiceList)
+  sleep(1)
+  if choose == pokeballs:
+    print("You win a POKEBALL!!!")
+    PlayerProfile["pokeballs"] += 1
+    print("current pokeballs: {}".format(pokeballs))
+  else:
+    print("You win a HEALTH POTION!!!")
+    PlayerProfile["HealthPotion"] += 1
+    print("current healt potions: {}".format(HealthPotion))
 
 def main():
   PokemonList = GetAllPokemons()
@@ -24,7 +40,8 @@ def main():
   while PlayerPokemonLive(PlayerProfile) > 0:
     EnemyPokemon = random.choice(PokemonList)
     fight(PlayerProfile, EnemyPokemon)
-    ItemLottery(PlayerProfile)
+    if PlayerPokemonLive(PlayerProfile) > 0:
+      ItemLottery(PlayerProfile)
   print("you lost in the fight: {}".format(PlayerProfile["combats"]))
 
 

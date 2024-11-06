@@ -60,9 +60,10 @@ TypeMultipliers = {
 
 #collect the important info of the pokemon attacks
 def PokemonAttacks(pokemon):
-  return "{} | type: {} | damage: {} ".format(pokemon["name"],
+  return "{} | type: {} | damage: {} | level: {}".format(pokemon["name"],
                                               pokemon["type"],
-                                              pokemon["damage"])
+                                              pokemon["damage"],
+                                              pokemon["MinLevel"])
 
 
 #collect the full life of the pokemons you have
@@ -72,11 +73,11 @@ def PlayerPokemonLive(PlayerProfile):
 
 #let the user choose the pokemon that is going to usea
 def ChoosePokemon(PlayerProfile):
-
+  sleep(1)
   chosen = None
   #meanwhile the user not choose a pokemon it will repeat the question
   while not chosen:
-    print("you have the next Pokemons:\n")
+    print("\nyou have the next Pokemons:\n")
     #loop in the length of the pokemon inventory
     for index in range(len(PlayerProfile["PokemonInventory"])):
       print("{}. {}".format(index, PokemonInfo(PlayerProfile["PokemonInventory"][index])))
@@ -107,9 +108,7 @@ def ChangeDamage(attack, EnemyPokemon, Div, Mult, BaseDamage):
 
    
 #the loop for the attack of the player
-def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory, EnemyAttack):
-
-    #cuando se elije el ataque del usuario solo se muestran ataques disponibles por nivel
+def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory):
     
   attack = None
   #meanwhile there are not attacks choosen it will repeat
@@ -118,11 +117,18 @@ def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory, EnemyA
     print("you have the next attacks:\n")
     #loop in every attack of the pokemon the user choose
     for index in range(len(PlayerPokemon["attacks"])):
-      print("{}. {}".format(index, PokemonAttacks(PlayerPokemon["attacks"][index])))
+      attacks = PlayerPokemon["attacks"]
+      if attacks[index]["MinLevel"] == "":
+        attacks[index]["MinLevel"] = "1"
+      elif PlayerPokemon["level"] < int(attacks[index]["MinLevel"]):
+        pass
+      elif PlayerPokemon["level"] >= int(attacks[index]["MinLevel"]):
+        sleep(0.5)
+        print("{}. {}".format(index, PokemonAttacks(PlayerPokemon["attacks"][index])))
+        
     #try to let the user choose the attack that it want to use
     try:
       attack = PlayerPokemon["attacks"][int(input("con cual deseas atacar? "))]
-      print(attack)
     except (ValueError, IndexError):
       print("unvalid attack option!")
   #apply the multipliers or dividers for the attack
@@ -132,7 +138,7 @@ def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory, EnemyA
   multiplier = ChangeDamage(attack, EnemyPokemon, Div, Mult, BaseDamage)
   EnemyPokemon["CurrentHealth"] -= multiplier
   attack["damage"] = BaseDamage
-
+  sleep(0.25)
   print("-----------------------------")
   print("The Enemy Health is {}/{}".format(EnemyPokemon["CurrentHealth"],
                                            EnemyPokemon["BaseHealth"]))
@@ -141,6 +147,7 @@ def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory, EnemyA
     #check if the enemy current health is non 0
   if EnemyPokemon["CurrentHealth"] <= 0:
     PlayerProfile["combats"] += 1
+    sleep(0.1)
     print("\n------------------------")
     print("You Win this fight!")
     print("------------------------")
@@ -149,8 +156,8 @@ def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory, EnemyA
 
 
 #the loop for the attack of the enemy
-def EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, PlayerAttack):
-  sleep(1)
+def EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack):
+  sleep(0.5)
   SelectAttack = EnemyAttack
   print("\n{} attack with {} and do {} of damage".format(EnemyPokemon["name"],
                                                    SelectAttack["name"],
@@ -162,13 +169,13 @@ def EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, PlayerAtt
   multiplier = ChangeDamage(EnemyAttack, PlayerPokemon, Div, Mult,BaseDamage)
   PlayerPokemon["CurrentHealth"] -= multiplier
   EnemyAttack["damage"] = BaseDamage
-
+  sleep(0.25)
   print("-------------------------------")
   print("your current health is {}/{}".format(PlayerPokemon["CurrentHealth"],
                                               PlayerPokemon["BaseHealth"]))
   #check if the player pokemon are alive
   if PlayerPokemon["CurrentHealth"] <= 0: 
-    
+      sleep(1)
       #check if at least 1 player pokemon is alive
       if PlayerPokemonLive(PlayerProfile) <= 0:
         print("\n------------------------")
@@ -176,7 +183,7 @@ def EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, PlayerAtt
         print("------------------------")
         return PlayerPokemonLive(PlayerProfile)
       else:
-        sleep(1)
+        sleep(0.75)
         print("\n-----------------------------------------------")
         print("your pokemon died, choose another one to fight...")
         print("-----------------------------------------------")
@@ -184,6 +191,30 @@ def EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, PlayerAtt
         PlayerProfile["PokemonInventory"].remove(PlayerPokemon)
   input("press any key to continue...")
 
+
+#cure the pokemon
+def CurePokemon(PlayerPokemon, PlayerProfile):
+  if PlayerProfile["HealthPotion"] > 0:
+    PlayerPokemon["CurrentHealth"] += 50
+    print("\n----------------------------------------------")
+    print("you heal 50 to {}".format(PlayerPokemon["name"]))
+    
+    if PlayerPokemon["CurrentHealth"] > PlayerPokemon["BaseHealth"]:
+      PlayerPokemon["CurrentHealth"] = PlayerPokemon["BaseHealth"]
+      
+    print("his actual life is {}/{}".format(PlayerPokemon["CurrentHealth"], PlayerPokemon["BaseHealth"]))
+    PlayerProfile["HealthPotion"] -= 1
+    print("---------------------------")
+    print("Current Health Potions: {}".format(PlayerProfile["HealthPotion"]))
+    print("----------------------------------------------")
+  else:
+    print("-----------------------------------")
+    print("you dont have any Health Potion!!!")
+    print("-----------------------------------")
+  
+  
+def CapturePokemon(EnemyPokemon,PlayerProfile):
+  pass
 
 #leveling up the pokemons
 def Experience(AttackHistory):
@@ -200,6 +231,7 @@ def Experience(AttackHistory):
 
 #principal loop of the fight
 def fight(PlayerProfile, EnemyPokemon):
+  sleep(1)
   print("---- NEW FIGHT ----\n")
   print("--------------------------------")
   print("tu adversario sera: {}".format(PokemonInfo(EnemyPokemon)))
@@ -211,7 +243,7 @@ def fight(PlayerProfile, EnemyPokemon):
                                          PokemonInfo(EnemyPokemon)))
   #meanwhile the Player pokemons are alive and the enemy is not dead it will the fight loop
   while PlayerPokemonLive(PlayerProfile) > 0 and EnemyPokemon["CurrentHealth"] > 0:
-
+    sleep(1)
     action = None
     #check what the user want to do
     while action not in ["a", "p", "h", "c"]:
@@ -219,17 +251,16 @@ def fight(PlayerProfile, EnemyPokemon):
     if action == "a":
       #random choose the enemy attack
       EnemyAttack = random.choice(EnemyPokemon["attacks"])
-      PlayerAttack = PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory, EnemyAttack)
+      PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory)
       #check if the enemy health is more than 0
       if EnemyPokemon["CurrentHealth"] > 0:
-        EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, PlayerAttack)
+        EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack)
         #check if there are at least one pokemon alive
         if PlayerPokemonLive(PlayerProfile) > 0 and PlayerPokemon["CurrentHealth"] <= 0:
           PlayerPokemon = ChoosePokemon(PlayerProfile)
       
       #check if the player pokemon is alive
     elif action == "h":
-      #TODO si hay curas, se aplica, cura 50 de vida hasta llegar a 100, si no tiene no se cura
       CurePokemon(PlayerPokemon, PlayerProfile)
       EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack)
     elif action == "p":
