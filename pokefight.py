@@ -143,7 +143,7 @@ def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory):
                                            EnemyPokemon["BaseHealth"]))
   print("-----------------------------")
   AttackHistory.append(PlayerPokemon)
-    #check if the enemy current health is non 0
+  #check if the enemy current health is non 0
   if EnemyPokemon["CurrentHealth"] <= 0:
     PlayerProfile["combats"] += 1
     sleep(0.1)
@@ -197,10 +197,10 @@ def CurePokemon(PlayerPokemon, PlayerProfile):
     PlayerPokemon["CurrentHealth"] += 50
     print("\n----------------------------------------------")
     print("you heal 50 to {}".format(PlayerPokemon["name"]))
-    
+    #stablish the maximum health recovery
     if PlayerPokemon["CurrentHealth"] > PlayerPokemon["BaseHealth"]:
       PlayerPokemon["CurrentHealth"] = PlayerPokemon["BaseHealth"]
-      
+    #print the currrent and base Health
     print("his actual life is {}/{}".format(PlayerPokemon["CurrentHealth"], PlayerPokemon["BaseHealth"]))
     PlayerProfile["HealthPotion"] -= 1
     print("---------------------------")
@@ -211,23 +211,23 @@ def CurePokemon(PlayerPokemon, PlayerProfile):
     print("you dont have any Health Potion!!!")
     print("-----------------------------------")
   
-  
+#Capture the pokemon by a Chance
 def CapturePokemon(EnemyPokemon,PlayerProfile,PlayerPokemon,FinishCombat):
   sleep(0.5)
   CaptureChance = random.randint(5,15)
   WinChance = random.randint(1, 100)
-
+  #change the chance of capturing it by the level of the pokemons
   if EnemyPokemon["level"] > PlayerPokemon["level"]:
     CaptureChance = random.randint(3, 12)
     WinChance = random.randint(25, 100)
   elif EnemyPokemon["level"] < PlayerPokemon["level"]: 
     CaptureChance = random.randint(7, 18)
     WinChance = random.randint(1, 75)
-
   PlayerProfile["pokeballs"] -= 1
+  #change the chance by the health, less health increase the chance
   if EnemyPokemon["CurrentHealth"] < EnemyPokemon["BaseHealth"]:
     CaptureChance += (EnemyPokemon["BaseHealth"] - EnemyPokemon["CurrentHealth"])
-  
+  #apply the probability
   if WinChance < CaptureChance:
     sleep(0.5)
     print("\nyou captured {}!!!".format(PokemonInfo(EnemyPokemon)))

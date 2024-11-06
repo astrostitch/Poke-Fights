@@ -17,13 +17,16 @@ def GetPlayerProfile(PokemonList):
 
 def ItemLottery(PlayerProfile):
   sleep(1)
+  print("\n-------------------------------------------------------------")
   print("it will be assigned by lottery a pokeball or a health potion")
   HealthPotion = PlayerProfile["HealthPotion"]
   pokeballs = PlayerProfile["pokeballs"]
+  #print the current pokeballs and health potion
   print("current pokeballs: {} | current healt potions: {}".format(pokeballs, HealthPotion))
   ChoiceList = [HealthPotion, pokeballs]
   choose = random.choice(ChoiceList)
   sleep(1)
+  #stablish the lottery win
   if choose == pokeballs:
     print("You win a POKEBALL!!!")
     PlayerProfile["pokeballs"] += 1
