@@ -212,8 +212,30 @@ def CurePokemon(PlayerPokemon, PlayerProfile):
     print("-----------------------------------")
   
   
-def CapturePokemon(EnemyPokemon,PlayerProfile):
-  pass
+def CapturePokemon(EnemyPokemon,PlayerProfile,PlayerPokemon,FinishCombat):
+  sleep(0.5)
+  CaptureChance = random.randint(5,15)
+  WinChance = random.randint(1, 100)
+
+  if EnemyPokemon["level"] > PlayerPokemon["level"]:
+    CaptureChance = random.randint(3, 12)
+    WinChance = random.randint(25, 100)
+  elif EnemyPokemon["level"] < PlayerPokemon["level"]: 
+    CaptureChance = random.randint(7, 18)
+    WinChance = random.randint(1, 75)
+
+  PlayerProfile["pokeballs"] -= 1
+  if EnemyPokemon["CurrentHealth"] < EnemyPokemon["BaseHealth"]:
+    CaptureChance += (EnemyPokemon["BaseHealth"] - EnemyPokemon["CurrentHealth"])
+  
+  if WinChance < CaptureChance:
+    sleep(0.5)
+    print("\nyou captured {}!!!".format(PokemonInfo(EnemyPokemon)))
+    PlayerProfile["PokemonInventory"].append(EnemyPokemon)
+    FinishCombat = True
+  else:
+    sleep(0.5)
+    print("\nYou did not capture {}".format(PokemonInfo(EnemyPokemon)))
 
 #leveling up the pokemons
 def Experience(AttackHistory, EnemyPokemon):
@@ -254,6 +276,7 @@ def fight(PlayerProfile, EnemyPokemon):
   print("--------------------------------")
   PlayerPokemon = ChoosePokemon(PlayerProfile)
   AttackHistory = []
+  FinishCombat = False
   #multiply enemy pokemon level base on my level
   if PlayerPokemon["level"] >= EnemyPokemon["level"]:
     EnemyPokemon["level"] *= 2
@@ -261,7 +284,7 @@ def fight(PlayerProfile, EnemyPokemon):
   print("\nopponents: {} vs {}\n".format(PokemonInfo(PlayerPokemon), 
                                          PokemonInfo(EnemyPokemon)))
   #meanwhile the Player pokemons are alive and the enemy is not dead it will the fight loop
-  while PlayerPokemonLive(PlayerProfile) > 0 and EnemyPokemon["CurrentHealth"] > 0:
+  while PlayerPokemonLive(PlayerProfile) > 0 and EnemyPokemon["CurrentHealth"] > 0 or FinishCombat == True:
     sleep(1)
     action = None
     EnemyAttacks = EnemyPokemon["attacks"]
@@ -289,8 +312,7 @@ def fight(PlayerProfile, EnemyPokemon):
       CurePokemon(PlayerPokemon, PlayerProfile)
       EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack)
     elif action == "p":
-      #TODO SI TIENE POKEBALLS PROBABILIDAD DEL USUARIO SI MENOS SALUD MAS PROBABLE
-      CapturePokemon(EnemyPokemon,PlayerProfile)
+      CapturePokemon(EnemyPokemon,PlayerProfile,PlayerPokemon, FinishCombat)
     elif action == "c":
       PlayerPokemon = ChoosePokemon(PlayerProfile)
 
