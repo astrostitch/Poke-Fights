@@ -264,6 +264,7 @@ def fight(PlayerProfile, EnemyPokemon):
   while PlayerPokemonLive(PlayerProfile) > 0 and EnemyPokemon["CurrentHealth"] > 0:
     sleep(1)
     action = None
+    EnemyAttacks = EnemyPokemon["attacks"]
     #check what the user want to do
     while action not in ["a", "p", "h", "c"]:
       action = input("what you want to do: [A]Attack, [P]Pokeball, [H]Health potion, [C]Change\n").lower()
@@ -271,8 +272,7 @@ def fight(PlayerProfile, EnemyPokemon):
       
       #random choose the enemy attack by level
       for index in range(len(EnemyPokemon["attacks"])):
-        EnemyAttack = EnemyPokemon["attacks"]
-        if EnemyPokemon["level"] >= int(EnemyAttack[index]["MinLevel"]):
+        if EnemyPokemon["level"] >= int(EnemyAttacks[index]["MinLevel"]):
           EnemyAttack = random.choice(EnemyPokemon["attacks"])
           break
           
