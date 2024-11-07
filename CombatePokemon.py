@@ -30,11 +30,13 @@ def ItemLottery(PlayerProfile):
   if choose == pokeballs:
     print("You win a POKEBALL!!!")
     PlayerProfile["pokeballs"] += 1
-    print("current pokeballs: {}".format(pokeballs))
+    print("current pokeballs: {}".format(PlayerProfile["pokeballs"]))
+    sleep(0.5)
   else:
     print("You win a HEALTH POTION!!!")
     PlayerProfile["HealthPotion"] += 1
-    print("current healt potions: {}".format(HealthPotion))
+    print("current healt potions: {}".format(PlayerProfile["HealthPotion"]))
+    sleep(0.5)
 
 def main():
   PokemonList = GetAllPokemons()

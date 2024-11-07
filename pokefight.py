@@ -4,11 +4,52 @@ import random
 
 #collect the important pokemon info
 def PokemonInfo(pokemon):
-  return "{} | Health {}/{} | Type {}".format(pokemon["name"],  
+  return "{} | Health {}/{} | Type {} | level: {}".format(pokemon["name"],  
                                              pokemon["CurrentHealth"], 
                                              pokemon["BaseHealth"],
-                                             pokemon["type"])
+                                             pokemon["type"],
+                                             pokemon["level"])
 
+
+#show the player inventory
+def PokemonInventory(PlayerProfile):
+
+  
+  for index in range(len(PlayerProfile["PokemonInventory"])):
+    sleep(0.1)
+    pokemon = PlayerProfile["PokemonInventory"]
+    print("\n{}. Name: {} | Health: {}/{} | Type: {} | Level: {} | CurrentEXP: {}\n".format(index, 
+                                                                                          pokemon[index]["name"], 
+                                                                                          pokemon[index]["CurrentHealth"],
+                                                                                          pokemon[index]["BaseHealth"],
+                                                                                          pokemon[index]["type"],
+                                                                                          pokemon[index]["level"],
+                                                                                          pokemon[index]["CurrentExp"]))
+    for attacks in range(len(pokemon[index]["attacks"])):
+      attack = pokemon[index]["attacks"]
+      SubIndex = index
+      sleep(0.25)
+      print(" {}.{}. Name: {} // Type: {} // Min level: {} // Damage: {}".format(attacks, SubIndex,
+                                                                               attack[attacks]["name"],
+                                                                               attack[attacks]["type"],
+                                                                               attack[attacks]["MinLevel"],
+                                                                               attack[attacks]["damage"]))
+    
+    
+#print the info of the player, name, level, inventory, combats, pokeballs, Health Potions
+def InfoPlayer(PlayerProfile):
+  sleep(0.1)
+  print("what do you want to see?")
+  Info = input("[I]Inventory, [U]utility\n").lower()
+  if Info == "i":
+    PokemonInventory(PlayerProfile)
+  if Info == "u":
+    sleep(0.1)
+    print("----------------------")
+    print("Pokeballs: {}\nHealth Potions: {}".format(PlayerProfile["pokeballs"],
+                                                     PlayerProfile["HealthPotion"]))
+    print("----------------------")
+  
 
 #library of weakness for each type
 TypeDividers = {
@@ -72,18 +113,20 @@ def PlayerPokemonLive(PlayerProfile):
 
 #let the user choose the pokemon that is going to usea
 def ChoosePokemon(PlayerProfile):
-  sleep(1)
+  sleep(0.25)
   chosen = None
   #meanwhile the user not choose a pokemon it will repeat the question
   while not chosen:
-    print("\nyou have the next Pokemons:\n")
+    print("you have the next Pokemons:\n")
     #loop in the length of the pokemon inventory
     for index in range(len(PlayerProfile["PokemonInventory"])):
+      sleep(0.1)
       print("{}. {}".format(index, PokemonInfo(PlayerProfile["PokemonInventory"][index])))
     try: #try to collect the pokemon that the user choose
-      return PlayerProfile["PokemonInventory"][int(input("cual eliges? "))]
+      sleep(0.1)
+      return PlayerProfile["PokemonInventory"][int(input("Your Choose: "))]
     except (ValueError, IndexError):
-      print("unvalid option")
+      print("\nunvalid option\n")
 
 
 #Multiply or divide the damage by the strengths or weaknesses of the pokemons
@@ -139,12 +182,18 @@ def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory):
   attack["damage"] = BaseDamage
   sleep(0.25)
   print("-----------------------------")
-  print("The Enemy Health is {}/{}".format(EnemyPokemon["CurrentHealth"],
-                                           EnemyPokemon["BaseHealth"]))
-  print("-----------------------------")
-  AttackHistory.append(PlayerPokemon)
+  if EnemyPokemon["CurrentHealth"] > 0:
+    print("The Enemy Health is {}/{}".format(EnemyPokemon["CurrentHealth"],
+                                             EnemyPokemon["BaseHealth"]))
+    print("-----------------------------")
+    AttackHistory.append(PlayerPokemon)
   #check if the enemy current health is non 0
-  if EnemyPokemon["CurrentHealth"] <= 0:
+  else:
+    EnemyPokemon["CurrentHealth"] = 0
+    print("The Enemy Health is {}/{}".format(EnemyPokemon["CurrentHealth"],
+                                             EnemyPokemon["BaseHealth"]))
+    print("-----------------------------")
+    AttackHistory.append(PlayerPokemon)
     PlayerProfile["combats"] += 1
     sleep(0.1)
     print("\n------------------------")
@@ -155,7 +204,7 @@ def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory):
 
 
 #the loop for the attack of the enemy
-def EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack):
+def EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, EnemyAttackHistory):
   sleep(0.5)
   SelectAttack = EnemyAttack
   print("\n{} attack with {} and do {} of damage".format(EnemyPokemon["name"],
@@ -169,28 +218,48 @@ def EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack):
   PlayerPokemon["CurrentHealth"] -= multiplier
   EnemyAttack["damage"] = BaseDamage
   sleep(0.25)
-  print("-------------------------------")
-  print("your current health is {}/{}".format(PlayerPokemon["CurrentHealth"],
-                                              PlayerPokemon["BaseHealth"]))
+  if PlayerPokemon["CurrentHealth"] > 0: 
+    print("-------------------------------")
+    print("your current health is {}/{}".format(PlayerPokemon["CurrentHealth"],
+                                                PlayerPokemon["BaseHealth"]))
   #check if the player pokemon are alive
-  if PlayerPokemon["CurrentHealth"] <= 0: 
-      sleep(1)
-      #check if at least 1 player pokemon is alive
-      if PlayerPokemonLive(PlayerProfile) <= 0:
-        print("\n------------------------")
-        print("---- GAME OVER!? ----")
-        print("------------------------")
-        return PlayerPokemonLive(PlayerProfile)
-      else:
-        sleep(0.75)
-        print("\n-----------------------------------------------")
-        print("your pokemon died, choose another one to fight...")
-        print("-----------------------------------------------")
-        #remove the dead pokemon and select new one
+  else:
+    PlayerPokemon["CurrentHealth"] = 0
+    print("-------------------------------")
+    print("your current health is {}/{}".format(PlayerPokemon["CurrentHealth"],
+                                              PlayerPokemon["BaseHealth"]))
+    sleep(0.75)
+    #check if at least 1 player pokemon is alive
+    if PlayerPokemonLive(PlayerProfile) <= 0:
+      print("\n------------------------")
+      print("---- GAME OVER!? ----")
+      print("------------------------")
+      return PlayerPokemonLive(PlayerProfile)
+    else:
+      sleep(0.75)
+      print("\n-----------------------------------------------")
+      print("your pokemon died, choose another one to fight...")
+      print("-----------------------------------------------")
+      Experience(EnemyAttackHistory, PlayerPokemon)
+      #remove the dead pokemon and select new one
+      try:
         PlayerProfile["PokemonInventory"].remove(PlayerPokemon)
+      except Exception:
+        print("that pokemon is dead already...maybe a bug...better continue...nothing happen here")
   input("press any key to continue...")
 
 
+#multiply enemy pokemon level base on my level
+def MultiplyEnemyLevel(PlayerPokemon, EnemyPokemon):
+  if PlayerPokemon["level"] >= EnemyPokemon["level"]:
+    EnemyPokemon["level"] = random.randint(PlayerPokemon["level"] - 1,PlayerPokemon["level"] + 4)
+  if EnemyPokemon["level"] == 0:
+    EnemyPokemon["level"] = 1
+  elif EnemyPokemon["level"] > 1:
+    EnemyPokemon["BaseHealth"] += (EnemyPokemon["level"] * 10)
+    EnemyPokemon["CurrentHealth"] = EnemyPokemon["BaseHealth"]
+    
+    
 #cure the pokemon
 def CurePokemon(PlayerPokemon, PlayerProfile):
   if PlayerProfile["HealthPotion"] > 0:
@@ -210,6 +279,7 @@ def CurePokemon(PlayerPokemon, PlayerProfile):
     print("-----------------------------------")
     print("you dont have any Health Potion!!!")
     print("-----------------------------------")
+  
   
 #Capture the pokemon by a Chance
 def CapturePokemon(EnemyPokemon,PlayerProfile,PlayerPokemon,FinishCombat):
@@ -237,6 +307,7 @@ def CapturePokemon(EnemyPokemon,PlayerProfile,PlayerPokemon,FinishCombat):
     sleep(0.5)
     print("\nYou did not capture {}".format(PokemonInfo(EnemyPokemon)))
 
+
 #leveling up the pokemons
 def Experience(AttackHistory, EnemyPokemon):
   for pokemon in AttackHistory:
@@ -262,47 +333,51 @@ def Experience(AttackHistory, EnemyPokemon):
       pokemon["BaseHealth"] += 10
       pokemon["CurrentHealth"] += 10
       print("---------------------------------------------------------")
-      print("your pokemon has leveled up {}".format(PokemonInfo(pokemon)))
+      print("{} has leveled up {}".format(EnemyPokemon, PokemonInfo(pokemon)))
       print("the live of {} has increase in 10: Current live: {}/{}".format(pokemon["name"], 
                                                                             pokemon["CurrentHealth"],
                                                                             pokemon["BaseHealth"]))
 
 #principal loop of the fight
 def fight(PlayerProfile, EnemyPokemon):
-  sleep(1)
+  sleep(0.4)
   print("---- NEW FIGHT ----\n")
+  #escoger el pokemon para combatir
+  PlayerPokemon = ChoosePokemon(PlayerProfile)
+  AttackHistory = []
+  EnemyAttackHistory = []
+  FinishCombat = False
+  
+  #multiply enemy pokemon level base on my level
+  MultiplyEnemyLevel(PlayerPokemon, EnemyPokemon)
+    
   print("--------------------------------")
   print("tu adversario sera: {}".format(PokemonInfo(EnemyPokemon)))
   print("--------------------------------")
-  PlayerPokemon = ChoosePokemon(PlayerProfile)
-  AttackHistory = []
-  FinishCombat = False
-  #multiply enemy pokemon level base on my level
-  if PlayerPokemon["level"] >= EnemyPokemon["level"]:
-    EnemyPokemon["level"] *= 2
 
+  sleep(0.25)
   print("\nopponents: {} vs {}\n".format(PokemonInfo(PlayerPokemon), 
                                          PokemonInfo(EnemyPokemon)))
   #meanwhile the Player pokemons are alive and the enemy is not dead it will the fight loop
   while PlayerPokemonLive(PlayerProfile) > 0 and EnemyPokemon["CurrentHealth"] > 0 or FinishCombat == True:
-    sleep(1)
+    sleep(0.2)
     action = None
     EnemyAttacks = EnemyPokemon["attacks"]
     #check what the user want to do
-    while action not in ["a", "p", "h", "c"]:
-      action = input("what you want to do: [A]Attack, [P]Pokeball, [H]Health potion, [C]Change\n").lower()
+    while action not in ["a", "p", "h", "c", "x"]:
+      action = input("\nwhat you want to do: [A]Attack, [P]Pokeball, [H]Health potion, [C]Change, [X]Profile\n").lower()
     if action == "a":
-      
+      EnemyAttack = None
       #random choose the enemy attack by level
       for index in range(len(EnemyPokemon["attacks"])):
         if EnemyPokemon["level"] >= int(EnemyAttacks[index]["MinLevel"]):
           EnemyAttack = random.choice(EnemyPokemon["attacks"])
           break
-          
+       
       PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory)
       #check if the enemy health is more than 0
       if EnemyPokemon["CurrentHealth"] > 0:
-        EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack)
+        EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, EnemyAttackHistory)
         #check if there are at least one pokemon alive
         if PlayerPokemonLive(PlayerProfile) > 0 and PlayerPokemon["CurrentHealth"] <= 0:
           PlayerPokemon = ChoosePokemon(PlayerProfile)
@@ -310,14 +385,13 @@ def fight(PlayerProfile, EnemyPokemon):
       #check if the player pokemon is alive
     elif action == "h":
       CurePokemon(PlayerPokemon, PlayerProfile)
-      EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack)
+      EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, EnemyAttackHistory)
     elif action == "p":
       CapturePokemon(EnemyPokemon,PlayerProfile,PlayerPokemon, FinishCombat)
     elif action == "c":
       PlayerPokemon = ChoosePokemon(PlayerProfile)
+    elif action == "x":
+      InfoPlayer(PlayerProfile)
 
   print("---- END OF THE FIGHT ----")
   input("press ENTER to continue...")
-
-
-#fight(PlayerProfile, EnemyPokemon)
