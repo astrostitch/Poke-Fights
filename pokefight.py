@@ -14,7 +14,7 @@ def PokemonInfo(pokemon):
 #show the player inventory
 def PokemonInventory(PlayerProfile):
 
-  
+  #go through the pokemon inventory
   for index in range(len(PlayerProfile["PokemonInventory"])):
     sleep(0.1)
     pokemon = PlayerProfile["PokemonInventory"]
@@ -25,6 +25,7 @@ def PokemonInventory(PlayerProfile):
                                                                                           pokemon[index]["type"],
                                                                                           pokemon[index]["level"],
                                                                                           pokemon[index]["CurrentExp"]))
+    #go through the attacks in the pokemon
     for attacks in range(len(pokemon[index]["attacks"])):
       attack = pokemon[index]["attacks"]
       SubIndex = index
@@ -96,7 +97,6 @@ TypeMultipliers = {
   "hada": ["lucha", "dragón", "siniestro"]
 }
 
-  
 
 #collect the important info of the pokemon attacks
 def PokemonAttacks(pokemon):
@@ -181,13 +181,13 @@ def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory):
   EnemyPokemon["CurrentHealth"] -= multiplier
   attack["damage"] = BaseDamage
   sleep(0.25)
-  print("-----------------------------")
+  print("-----------------------------")\
+  #check if the enemy current health is non 0
   if EnemyPokemon["CurrentHealth"] > 0:
     print("The Enemy Health is {}/{}".format(EnemyPokemon["CurrentHealth"],
                                              EnemyPokemon["BaseHealth"]))
     print("-----------------------------")
     AttackHistory.append(PlayerPokemon)
-  #check if the enemy current health is non 0
   else:
     EnemyPokemon["CurrentHealth"] = 0
     print("The Enemy Health is {}/{}".format(EnemyPokemon["CurrentHealth"],
