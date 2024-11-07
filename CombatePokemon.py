@@ -8,7 +8,7 @@ from time import sleep
 #collect all the info of the player
 def GetPlayerProfile(PokemonList):
   return {
-    "player_name": input("como te llamas joven aventurero?\n"),
+    "player_name": input("What's your name traveller?\n"),
     "PokemonInventory": [random.choice(PokemonList) for a in range(3)],
     "combats": 0,
     "pokeballs": 1,
