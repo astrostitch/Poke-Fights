@@ -5,17 +5,8 @@ from colorama import Fore, Back, Style, init
 # Initialize colorama
 init()
 
-
+#print colors in the terminal
 def PrintColored(text, color="", background="", reset=Style.RESET_ALL):
-    """
-    Imprime texto con color personalizado.
-    
-    Parámetros:
-    - text: Texto a imprimir.
-    - color: Color del texto (de colorama.Fore).
-    - background: Color del fondo (de colorama.Back).
-    - reset: Estilo de reset para restablecer.
-    """
     print("{}{}{}{}".format(color, background, text, reset))
 
 #collect the important pokemon info
