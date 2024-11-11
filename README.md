@@ -25,7 +25,7 @@ The pokemons either if it's yours or enemy have the same number stats that will 
 ### Enemy Pokemon
 The Enemy Pokemon will have a diferent and higher level than you most of the time,
 because the level of the pokemon is based on your level but with a variety of between 0 or 4 level plus
-![image of the function that Give the enemy multiply level](.md\readme\images_readme\multplyenemylevel.png)
+![image of the function that Give the enemy multiply level](https://i.postimg.cc/503H82Qz/multply-enemy-level.png)
 
 ## This heading is not unique in the file
 
