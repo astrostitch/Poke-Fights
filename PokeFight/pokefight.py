@@ -9,6 +9,7 @@ init()
 def PrintColored(text, color="", background="", reset=Style.RESET_ALL):
     print("{}{}{}{}".format(color, background, text, reset))
 
+
 #collect the important pokemon info
 def PokemonInfo(pokemon):
   return "{} | Health {}/{} | Type {} | level: {}".format(pokemon["name"],  
@@ -20,7 +21,6 @@ def PokemonInfo(pokemon):
 
 #show the player inventory
 def PokemonInventory(PlayerProfile):
-
   #go through the pokemon inventory
   for index in range(len(PlayerProfile["PokemonInventory"])):
     sleep(0.1)
@@ -138,14 +138,14 @@ def ChoosePokemon(PlayerProfile):
 
 #Multiply or divide the damage by the strengths or weaknesses of the pokemons
 def ChangeDamage(attack, EnemyPokemon, Div, Mult, BaseDamage):
-  
+  #change the damage by dividing 
   if EnemyPokemon["type"] in Div.get(attack["type"], []):
     attack["damage"] /= 1.25
     PrintColored("The attack has receive a 1.25 penalty for pokemon resistances", color=Fore.LIGHTRED_EX)
     PrintColored("Base damage: {} | Current damage: {}".format(BaseDamage, attack["damage"]), color=Fore.LIGHTRED_EX)
     sleep(1)
     return attack["damage"]
-  
+  #change the damage by dividing
   elif EnemyPokemon["type"] in Mult.get(attack["type"], []):
     attack["damage"] *= 1.25
     PrintColored("The attack has receive a 1.25 multiply for pokemon resistances", color=Fore.LIGHTGREEN_EX)
@@ -167,6 +167,7 @@ def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory):
     #loop in every attack of the pokemon the user choose
     for index in range(len(PlayerPokemon["attacks"])):
       attacks = PlayerPokemon["attacks"]
+      #when to print the attacks
       if attacks[index]["MinLevel"] == "":
         attacks[index]["MinLevel"] = "1"
       elif PlayerPokemon["level"] < int(attacks[index]["MinLevel"]):
@@ -179,7 +180,7 @@ def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory):
     try:
       attack = PlayerPokemon["attacks"][int(input("con cual deseas atacar? "))]
     except (ValueError, IndexError):
-      PrintColored("unvalid attack option!", Color=Fore.WHITE, background=Back.RED)
+      PrintColored("unvalid attack option!", color=Fore.WHITE, background=Back.RED)
   #apply the multipliers or dividers for the attack
   Div = TypeDividers
   Mult = TypeMultipliers
@@ -206,7 +207,7 @@ def PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory):
     PrintColored("-------------------", color=Fore.YELLOW)
     PrintColored("You Win this fight!", color=Fore.BLACK, background=Back.CYAN)
     PrintColored("-------------------", color=Fore.YELLOW)
-    Experience(AttackHistory, EnemyPokemon)
+    Experience(AttackHistory, PlayerPokemon)
   return attack
 
 
@@ -258,6 +259,7 @@ def EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, EnemyAtta
 
 #multiply enemy pokemon level base on my level
 def MultiplyEnemyLevel(PlayerPokemon, EnemyPokemon):
+  #if the level of the player pokemon is higher or equal
   if PlayerPokemon["level"] >= EnemyPokemon["level"]:
     EnemyPokemon["level"] = random.randint(PlayerPokemon["level"] - 1,PlayerPokemon["level"] + 4)
   if EnemyPokemon["level"] == 0:
@@ -300,10 +302,10 @@ def CapturePokemon(EnemyPokemon,PlayerProfile,PlayerPokemon, Captured):
   #change the chance of capturing it by the level of the pokemons
   if EnemyPokemon["level"] > PlayerPokemon["level"]:
     CaptureChance = random.randint(3, 12)
-    WinChance = random.randint(25, 100)
+    WinChance = random.randint(45, 100)
   elif EnemyPokemon["level"] < PlayerPokemon["level"]: 
     CaptureChance = random.randint(7, 18)
-    WinChance = random.randint(1, 75)
+    WinChance = random.randint(1, 65)
   PlayerProfile["pokeballs"] -= 1
   #change the chance by the health, less health increase the chance
   if EnemyPokemon["CurrentHealth"] < EnemyPokemon["BaseHealth"]:
@@ -319,44 +321,46 @@ def CapturePokemon(EnemyPokemon,PlayerProfile,PlayerPokemon, Captured):
     sleep(0.5)
     PrintColored("\nYou did not capture {}".format(PokemonInfo(EnemyPokemon)), color=Fore.MAGENTA, background=Back.LIGHTRED_EX)
     return Captured
-    
-
+   
 
 #leveling up the pokemons
-def Experience(AttackHistory, EnemyPokemon):
+def Experience(AttackHistory, Pokemon):
+  NecessaryPoints = 20
+  if Pokemon["level"] > 1:
+    NecessaryPoints += Pokemon["level"] * 5
+
   for pokemon in AttackHistory:
     #random points by level of the pokemons
-    if pokemon["level"] < EnemyPokemon["level"]:
+    if pokemon["level"] < Pokemon["level"]:
+      LowPointPerPFight = 6
+      HighPointPerFigth = 10
+    elif pokemon["level"] > Pokemon["level"]:
       LowPointPerPFight = 3
       HighPointPerFigth = 7
-    elif pokemon["level"] > EnemyPokemon["level"]:
-      LowPointPerPFight = 1
-      HighPointPerFigth = 3
     else:
-      LowPointPerPFight = 1
-      HighPointPerFigth = 5
+      LowPointPerPFight = 4
+      HighPointPerFigth = 9
     point = random.randint(LowPointPerPFight,HighPointPerFigth)
-    NecessaryPoints = 20
     pokemon["CurrentExp"] += point   
     while pokemon["CurrentExp"] > NecessaryPoints:
-      pokemon["CurrentExp"] == NecessaryPoints
-      pokemon["CurrentExp"] -= NecessaryPoints
+      pokemon["CurrentExp"] = 0
       pokemon["level"] += 1
-      NecessaryPoints += 5
-      #increase the live of the pokemons 
-      pokemon["BaseHealth"] += 10
-      pokemon["CurrentHealth"] += 10
+      #increase the live of the pokemons by level
+      Pokemon["BaseHealth"] += 10
+      Pokemon["CurrentHealth"] += 10
       PrintColored("---------------------------------------------------------", color=Fore.YELLOW)
-      PrintColored("{} has leveled up {}".format(EnemyPokemon, PokemonInfo(pokemon)), color=Fore.YELLOW)
-      PrintColored("the live of {} has increase in 10: Current live: {}/{}".format(pokemon["name"], 
-                                                                            pokemon["CurrentHealth"],
-                                                                            pokemon["BaseHealth"]), color=Fore.GREEN)
+      PrintColored("{} has leveled up {}".format(Pokemon["name"], PokemonInfo(Pokemon)), color=Fore.YELLOW)
+      PrintColored("the live of {} has increase in 10: Current live: {}/{}".format(Pokemon["name"], 
+                                                                                pokemon["CurrentHealth"],
+                                                                                pokemon["BaseHealth"]), color=Fore.GREEN)
+
 
 #principal loop of the fight
 def fight(PlayerProfile, EnemyPokemon):
   sleep(0.4)
   PrintColored("---- NEW FIGHT ----\n", color=Fore.BLACK, background=Back.WHITE)
   #escoger el pokemon para combatir
+    
   PlayerPokemon = ChoosePokemon(PlayerProfile)
   AttackHistory = []
   EnemyAttackHistory = []
@@ -387,7 +391,6 @@ def fight(PlayerProfile, EnemyPokemon):
       action = input("\nwhat you want to do: [A]Attack, [P]Pokeball, [H]Health potion, [C]Change, [X]Profile\n").lower()
         
     if action == "a":
-      
       PlayerTurn(PlayerPokemon, EnemyPokemon, PlayerProfile, AttackHistory)
       #check if the enemy health is more than 0
       if EnemyPokemon["CurrentHealth"] > 0:
@@ -395,18 +398,22 @@ def fight(PlayerProfile, EnemyPokemon):
         #check if there are at least one pokemon alive
         if PlayerPokemonLive(PlayerProfile) > 0 and PlayerPokemon["CurrentHealth"] <= 0:
           PlayerPokemon = ChoosePokemon(PlayerProfile)
-      
       #check if the player pokemon is alive
     elif action == "h":
       CurePokemon(PlayerPokemon, PlayerProfile)
       EnemyTurn(EnemyPokemon, PlayerPokemon, PlayerProfile, EnemyAttack, EnemyAttackHistory)
     elif action == "p":
       Captured = False
-      Captured = CapturePokemon(EnemyPokemon,PlayerProfile,PlayerPokemon, Captured)
-      if Captured == True:
-        break
+      #if no pokeballs print dont have pokeballs
+      if PlayerProfile["pokeballs"] > 0:
+        Captured = CapturePokemon(EnemyPokemon,PlayerProfile,PlayerPokemon, Captured)
+        if Captured == True:
+          break
+        else:
+          pass
       else:
-        pass
+        PrintColored("you don't have any pokeballs!!", color=Fore.RED)
+        
     elif action == "c":
       PlayerPokemon = ChoosePokemon(PlayerProfile)
     elif action == "x":

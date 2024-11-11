@@ -7,7 +7,7 @@ PokemonBase = {
   "name": "", 
   "CurrentHealth": 100,
   "BaseHealth": 100,
-  "level": random.randint(1,7),
+  "level": 1,
   "type": "",
   "CurrentExp": 0
 }

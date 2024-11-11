@@ -15,6 +15,8 @@ def GetPlayerProfile(PokemonList):
     "HealthPotion": 1
   }
 
+
+#The Item lottery in the final fight
 def ItemLottery(PlayerProfile):
   sleep(1)
   print("\n-------------------------------------------------------------")
@@ -38,9 +40,30 @@ def ItemLottery(PlayerProfile):
     print("current healt potions: {}".format(PlayerProfile["HealthPotion"]))
     sleep(0.5)
 
+
+#stablish the the health by the pokemon level
+def PokemonHealth(Pokemon):
+  if Pokemon["level"] > 1:
+  #increase the live of the pokemons by level
+    HealthToSum = 10 - Pokemon["level"]
+    if HealthToSum > 0:
+      Pokemon["BaseHealth"] += (Pokemon["level"] + HealthToSum) * Pokemon["level"]
+      Pokemon["CurrentHealth"] += (Pokemon["level"] + HealthToSum) * Pokemon["level"]
+    else:
+      Pokemon["BaseHealth"] += (Pokemon["level"] + (+(HealthToSum)))
+      Pokemon["CurrentHealth"] += (Pokemon["level"] + (+(HealthToSum)))     
+
+
+#main function
 def main():
   PokemonList = GetAllPokemons()
   PlayerProfile = GetPlayerProfile(PokemonList)
+  PokemonInventory = PlayerProfile["PokemonInventory"]
+  #randomize the level of the player pokemons and scale the health
+  for index in range(len(PokemonInventory)):
+    PokemonInventory[index]["level"] = random.randint(1, 7)
+    PokemonHealth(PokemonInventory[index])
+    
   #loop to continue the game if at least 1 player pokemon is alive
   while PlayerPokemonLive(PlayerProfile) > 0:
     EnemyPokemon = random.choice(PokemonList)
