@@ -1,4 +1,4 @@
-# Example headings
+<h1 align=center>PokeFight</h1>
 
 ## Sample Section
 
