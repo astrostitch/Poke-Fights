@@ -9,7 +9,7 @@ you can catch the enemy pokemon, restore health of your pokemon or access your i
 ## INDEX
 Link to Pokemon stats: [Pokemon Stats](#pokemon-stats).
 
-Link to explain the Enemy Pokemon section: [Enemy Pokemon](#enemy-pokemon).
+Link to explain the Enemy Pokemon section: [Pokemons](#pokemons).
 
 Link to explain the attacks and damage section: [Attacks and Damage](#attacks-and-damage).
 
@@ -26,6 +26,10 @@ Link to explained the Player pokemons section: [Player Pokemon](#player-pokemon)
 
 
 ## Pokemons
+
+Link to explain the Enemy Pokemon section: [Enemy Pokemon](#enemy-pokemon).
+
+Link to explain the attacks and damage section: [Attacks and Damage](#attacks-and-damage).
 
 ### Player Pokemon
 Start with 3 pokemons and with a random level and health adapted to each level, the attacks of the pokemons will be appearing by the level you are on,
