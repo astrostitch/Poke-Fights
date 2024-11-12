@@ -27,9 +27,9 @@ Link to explained the Player pokemons section: [Player Pokemon](#player-pokemon)
 
 ## Pokemons
 
-Link to explain the Enemy Pokemon section: [Enemy Pokemon](#enemy-pokemon).
+Link to explain the attacks and damage section: [Player Pokemons](#player-pokemons).
 
-Link to explain the attacks and damage section: [Attacks and Damage](#attacks-and-damage).
+Link to explain the Enemy Pokemon section: [Enemy Pokemon](#enemy-pokemon).
 
 ### Player Pokemon
 Start with 3 pokemons and with a random level and health adapted to each level, the attacks of the pokemons will be appearing by the level you are on,
