@@ -2,6 +2,7 @@
 
 ## Description
 Python project about pokemon fights where a fight will happen in a Loop.
+
 There are 150 pokemons everyone whit it's attacks, type, name and level, You start with 3 pokemons at random level between 1 and 7 pokemon and has to be leveling up by figthing,
 you can catch the enemy pokemon, restore health of your pokemon or access your inventory
 
