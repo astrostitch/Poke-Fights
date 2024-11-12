@@ -9,8 +9,9 @@ you can catch the enemy pokemon, restore health of your pokemon or access your i
 ## INDEX
 Link to Pokemon stats: [Pokemon Stats](#pokemon-stats).
 
-Link to the second non-unique section: [Link Text](#this-heading-is-not-unique-in-the-file-1).
+Link to explain the Enemy Pokemon section: [Enemy Pokemon](#enemy-pokemon).
 
+Link to explain the attacks and damage section: [Attacks and Damage](#attacks-and-damage).
 
 ## Pokemon Stats
 The pokemons either if it's yours or enemy have the same number stats that will be:
@@ -23,9 +24,8 @@ The pokemons either if it's yours or enemy have the same number stats that will 
 
 Link to explained the Player pokemons section: [Player Pokemon](#player-pokemon).
 
-Link to explain the Enemy Pokemon section: [Enemy Pokemon](#enemy-pokemon).
 
-Link to explain the attacks and damage section: [Attacks and Damage](#attacks-and-damage).
+## Pokemons
 
 ### Player Pokemon
 Start with 3 pokemons and with a random level and health adapted to each level, the attacks of the pokemons will be appearing by the level you are on,
@@ -47,6 +47,7 @@ The Enemy Pokemon will be choose randomness in the 150 pokemons we have and will
 
 ## Attacks And Damage
 Every turn a pokemon will attack with a random attack based on the level of the pokemon.
+
 The Damage will change by the type of the attack and the pokemons type, will increase if the pokemon is weak in front of the attacks
 and will decrease if the pokemon is strong against the attacks
 
