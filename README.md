@@ -26,8 +26,11 @@ Link to explain the Enemy Pokemon section: [Enemy Pokemon](#enemy-pokemon).
 Start with 3 pokemons and with a random level and health adapted to each level, the attacks of the pokemons will be appearing by the level you are on,
 > for example if you are on level 1 you will only have the attacks from that level,
 > but, if your pokemon are in level 25 your pokemon will have the attacks of that level and below
+
 In the start you would choose a pokemon between these 3 pokemons you have
+
 [![imagen-2024-11-12-230811686.png](https://i.postimg.cc/vT9YDf5j/imagen-2024-11-12-230811686.png)](https://postimg.cc/JHrV2y6c)
+
 and then it print the pokemons you've chosen vs the Enemy Pokemon
 
 ### Enemy Pokemon
