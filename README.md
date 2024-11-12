@@ -25,6 +25,8 @@ Link to explained the Player pokemons section: [Player Pokemon](#player-pokemon)
 
 Link to explain the Enemy Pokemon section: [Enemy Pokemon](#enemy-pokemon).
 
+Link to explain the attacks and damage section: [Attacks and Damage](#attacks-and-damage).
+
 ### Player Pokemon
 Start with 3 pokemons and with a random level and health adapted to each level, the attacks of the pokemons will be appearing by the level you are on,
 
@@ -44,7 +46,9 @@ The Enemy Pokemon will be choose randomness in the 150 pokemons we have and will
 [![imagen-2024-11-11-224147516.png](https://i.postimg.cc/W3Czp1cz/imagen-2024-11-11-224147516.png)](https://postimg.cc/Q9gh0stZ)
 
 ## Attacks And Damage
-Every turn a pokemon will attack with a random attack based on the level of the pokemon
+Every turn a pokemon will attack with a random attack based on the level of the pokemon.
+The Damage will change by the type of the attack and the pokemons type, will increase if the pokemon is weak in front of the attacks
+and will decrease if the pokemon is strong against the attacks
 
 ### Player Attack
 The Player would choose an attack of the pokemon you have chosen previously to fight and 
