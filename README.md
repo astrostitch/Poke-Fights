@@ -18,6 +18,7 @@ The pokemons either if it's yours or enemy have the same number stats that will 
 > * type
 > * attacks
 > * level
+
 Link to explained the Player pokemons section: [Player Pokemon](#player-pokemon).
 Link to explain the Enemy Pokemon section: [Enemy Pokemon](#enemy-pokemon).
 
