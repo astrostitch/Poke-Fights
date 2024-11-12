@@ -56,7 +56,14 @@ The Damage will change by the type of the attack and the pokemons type, will inc
 and will decrease if the pokemon is strong against the attacks
 
 ### Player Attack
-The Player would choose an attack of the pokemon you have chosen previously to fight and 
+It will show you the attacks you have avalible by the level you are on or below
+
+[![imagen-2024-11-12-232423643.png](https://i.postimg.cc/0yj4fxB5/imagen-2024-11-12-232423643.png)](https://postimg.cc/LJdv4dSG)
+
+The Player would choose an attack of the pokemon you have chosen previously to fight and if input you give to the program is not what expected
+it will show a message of error
+
+[![imagen-2024-11-12-232705887.png](https://i.postimg.cc/y8Gbp5Mm/imagen-2024-11-12-232705887.png)](https://postimg.cc/75g9fBYh)
 
 ### Enemy Attack 
 The Enemy will attack with a random attack that the pokemon have and it can be used in the level the pokemon is
