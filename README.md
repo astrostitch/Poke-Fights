@@ -14,6 +14,7 @@ Link to the second non-unique section: [Link Text](#this-heading-is-not-unique-i
 
 ## Pokemon Stats
 The pokemons either if it's yours or enemy have the same number stats that will be:
+
 > * name
 > * health
 > * type
@@ -26,6 +27,7 @@ Link to explain the Enemy Pokemon section: [Enemy Pokemon](#enemy-pokemon).
 
 ### Player Pokemon
 Start with 3 pokemons and with a random level and health adapted to each level, the attacks of the pokemons will be appearing by the level you are on,
+
 > for example if you are on level 1 you will only have the attacks from that level,
 > but, if your pokemon are in level 25 your pokemon will have the attacks of that level and below
 
@@ -38,14 +40,18 @@ and then it print the pokemons you've chosen vs the Enemy Pokemon
 ### Enemy Pokemon
 The Enemy Pokemon will be choose randomness in the 150 pokemons we have and will have a diferent (higher, equal or less) level than you.
 > The level of the pokemon is based on your level but with a variety of between 0 or 4 level plus
+> 
 [![imagen-2024-11-11-224147516.png](https://i.postimg.cc/W3Czp1cz/imagen-2024-11-11-224147516.png)](https://postimg.cc/Q9gh0stZ)
 
 ## Attacks And Damage
 Every turn a pokemon will attack with a random attack based on the level of the pokemon
+
 ### Player Attack
 The Player would choose an attack of the pokemon you have chosen previously to fight and 
+
 ### Enemy Attack 
 The Enemy will attack with a random attack that the pokemon have and it can be used in the level the pokemon is
+
 [![imagen-2024-11-12-230025441.png](https://i.postimg.cc/Kzf4xnr5/imagen-2024-11-12-230025441.png)](https://postimg.cc/BL8JCPz8)
 
 
