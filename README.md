@@ -16,6 +16,8 @@ Link to explain the Enemy Pokemon section: [Pokemons](#pokemons).
 
 Link to explain the attacks and damage section: [Attacks and Damage](#attacks-and-damage).
 
+Link to explain the capture pokemon section: [Capture Pokemon](#capture-pokemon).
+
 ## Pokemon Stats
 The pokemons either if it's yours or enemy have the same number stats that will be:
 
