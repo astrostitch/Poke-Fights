@@ -10,7 +10,7 @@ There are 150 pokemons everyone whit it's attacks, type, name and level, You sta
 you can catch the enemy pokemon, restore health of your pokemon or access your inventory
 
 > [!NOTE]
-> You can make an appointment or contribute to this little game by downloading it
+> You can make an appointment or contribute to this little game by downloading it or writing any idea in the issues
 
 ## INDEX
 Link to Pokemon stats: [Pokemon Stats](#pokemon-stats).
