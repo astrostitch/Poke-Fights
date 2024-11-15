@@ -3,6 +3,9 @@
 ## Description
 Python project about pokemon fights where a fight will happen in a Loop.
 
+This readme is ready to read so you don´t need to download the files, but, if you want to download the files,
+the instructions to donwload it are here: [Download Instruction](#download-instruction).
+
 There are 150 pokemons everyone whit it's attacks, type, name and level, You start with 3 pokemons at random level between 1 and 7 pokemon and has to be leveling up by figthing,
 you can catch the enemy pokemon, restore health of your pokemon or access your inventory
 
@@ -85,6 +88,15 @@ If the pokemon type is weak afainst the attack type the attack will receive a bo
 > image damagge function
 
 
-TEXT 2
+## Capture Pokemon
+You can capture pokemons by throwing them a pokeball you will have in the inventory.
+
+## Chance of capturing
+There will be a chance of capturing one depending on the level and the health of the pokemon that will be captured.
+While the lower life the pokemon have, the higher will be the chances of capturing it,
+and while the higher is the pokemon level in compare to your pokemon level the less chances you have to capture it
+
+> image of the capture function
+
 
 
