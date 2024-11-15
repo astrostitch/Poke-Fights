@@ -149,10 +149,6 @@ It will be a random chance to get a pokeball o a Health potion
 
 [![imagen-2024-11-15-195340600.png](https://i.postimg.cc/9X193jN5/imagen-2024-11-15-195340600.png)](https://postimg.cc/Sj2R8HhD)
 
-## To Do
-
-- [X] \Put colors in Terminal
-- [ ] \Make an .exe to execute
 
 
 > [!IMPORTANT]
@@ -196,3 +192,7 @@ Run "Python PokemonCombatMain.py"
 ```
 python Python PokemonCombatMain.py
 ```
+
+## TO DO
+- [X] \Put colors in Terminal
+- [ ] \Make an .exe to execute
