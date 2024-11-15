@@ -55,6 +55,12 @@ Every turn a pokemon will attack with a random attack based on the level of the 
 The Damage will change by the type of the attack and the pokemons type, will increase if the pokemon is weak in front of the attacks
 and will decrease if the pokemon is strong against the attacks
 
+Link to Player Attack: [Player Attack](#player-attack).
+
+Link to explain the Enemy Attack: [Enemy Attack](#enemy-attack).
+
+Link to explain the Damage: [Damage](#damage).
+
 ### Player Attack
 It will show you the attacks you have avalible by the level you are on or below
 
@@ -69,6 +75,14 @@ it will show a message of error
 The Enemy will attack with a random attack that the pokemon have and it can be used in the level the pokemon is
 
 [![imagen-2024-11-12-230025441.png](https://i.postimg.cc/Kzf4xnr5/imagen-2024-11-12-230025441.png)](https://postimg.cc/BL8JCPz8)
+
+### Damage
+The damage will depend on the attack and the type of the pokemon that will receive it
+
+If the pokemon type is strong against the attack type the attack will receive a penalty of damage, dividing it by 1.25,
+If the pokemon type is weak afainst the attack type the attack will receive a boos of damage, multiplying it by 1.25
+
+> image damagge function
 
 
 TEXT 2
