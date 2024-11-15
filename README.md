@@ -24,6 +24,8 @@ Link to explain the capture pokemon section: [Capture Pokemon](#capture-pokemon)
 
 Link to explain the Health Potion section: [Health Potion](#health-potion).
 
+Link to explain the Item Lottery section: [Item Lottery](#item-lottery).
+
 ## Profile
 You will have a Profile that you can access once you choose the pokemon.
 
@@ -138,4 +140,9 @@ If you don't have it in the inventory or already have the life full it will prin
 
 >image of the Health potion function
 
+## Item Lottery
+There will be given to you an object every time you finished a fight and have one or more pokemons alive,
+It will be a random chance to get a pokeball o a Health potion
+
+>image to item lottery function
 
