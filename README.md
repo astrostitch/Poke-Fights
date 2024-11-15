@@ -146,3 +146,15 @@ It will be a random chance to get a pokeball o a Health potion
 
 >image to item lottery function
 
+## Download Instructions
+To Install it You have to check if the interpreter is "python 3.11.9 (.venv)(venv)"
+
+>image to refer the interpreter
+
+open a new terminal and enter the directory where the "PokemonCombatMain.py" is
+
+>imagen del comando para entrar en la carpeta
+
+Run "Python PokemonCombatMain.py"
+
+>imagen del comando para ejecutar el archivo
