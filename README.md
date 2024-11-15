@@ -20,6 +20,8 @@ Link to explain the capture pokemon section: [Capture Pokemon](#capture-pokemon)
 
 Link to explain the Health Potion section: [Health Potion](#health-potion).
 
+Link to explain the Leveling section: [Leveling](#leveling).
+
 ## Pokemon Stats
 The pokemons either if it's yours or enemy have the same number stats that will be:
 
@@ -91,6 +93,21 @@ If the pokemon type is weak afainst the attack type the attack will receive a bo
 
 > image damagge function
 
+## Leveling
+The Pokemons you have will level up by fighting, every attack you do will give the pokemon points to level up
+
+> image of the level up function
+
+### Points
+The level 1 needed points to level up will be 20 and will be increasing by level in 5.
+
+The points will be given to the pokemon at the end of the battle if you win, and will have
+a random chance based on the level of your pokemon compared to the other pokemon.
+
+> image of the points given
+
+### health
+The base health in level 1 will be 100 and with every level up it increase in 10 points of health
 
 ## Capture Pokemon
 You can capture pokemons by throwing them a pokeball you will have in the inventory.
