@@ -182,7 +182,9 @@ git clone git@github.com:astrostitch/pokemon-game.git
 
 ### Install Visual Studio Code
 
-To Install it You have to check if the interpreter is "python 3.11.10 ('.env':venv)"
+To Install for linux it You have to check if the interpreter is "python 3.11.10 ('.env':venv)"
+
+To Install for windows it You have to check if the interpreter is "python 3.11.9 ('.venv':venv)"
 
 >image to refer the interpreter
 
