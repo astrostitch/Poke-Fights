@@ -176,7 +176,9 @@ extract the zip
 ### GIT Download
 Open a terminal and do "git clone (copy ssh url)"
 
-> git clone git@github.com:astrostitch/pokemon-game.git
+```
+git clone git@github.com:astrostitch/pokemon-game.git
+```
 
 ### Install Visual Studio Code
 
@@ -185,9 +187,10 @@ To Install it You have to check if the interpreter is "python 3.11.10 ('.env':ve
 >image to refer the interpreter
 
 open a new terminal and go to "Pokefight"
-
->cd PokeFight
-
+```
+cd PokeFight
+```
 Run "Python PokemonCombatMain.py"
-
->python Python PokemonCombatMain.py
+```
+python Python PokemonCombatMain.py
+```
