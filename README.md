@@ -147,11 +147,32 @@ It will be a random chance to get a pokeball o a Health potion
 >image to item lottery function
 
 ## Download Instructions
-To Install it You have to check if the interpreter is "python 3.11.9 (.venv)(venv)"
+
+Link to Download: [Download](#download).
+
+Link to GIT Download: [GIT Download](#git-download).
+
+Link to Install Visual Studio Code: [Install Visual Studio Code](#install-visual-studio-code).
+
+### Download
+click the blue button that says "code" and download the Zip
+
+> image to download it
+
+extract the zip
+
+### GIT Download
+Open a terminal and do "git clone (copy ssh url)"
+
+> git clone git@github.com:astrostitch/pokemon-game.git
+
+### Install Visual Studio Code
+
+To Install it You have to check if the interpreter is "python 3.11.10 ('.env':venv)"
 
 >image to refer the interpreter
 
-open a new terminal and enter the directory where the "PokemonCombatMain.py" is
+open a new terminal and go to "Pokefight"
 
 >imagen del comando para entrar en la carpeta
 
