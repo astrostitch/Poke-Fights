@@ -3,7 +3,7 @@ from pokefight import fight, PlayerPokemonLive
 import random
 from pprint import pprint
 from time import sleep
-
+import sys
 
 #collect all the info of the player
 def GetPlayerProfile(PokemonList):
