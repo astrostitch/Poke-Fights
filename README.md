@@ -124,7 +124,7 @@ a random chance based on the level of your pokemon compared to the other pokemon
 
 [![imagen-2024-11-15-195836219.png](https://i.postimg.cc/Px5tY0bY/imagen-2024-11-15-195836219.png)](https://postimg.cc/8FxQVK0z)
 
-### health
+### Health
 The base health in level 1 will be 100 and with every level up it increases in 10 points of health
 
 ## Capture Pokemon
