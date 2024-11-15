@@ -3,10 +3,10 @@
 ## Description
 Python project about pokemon fights where a fight will happen in a Loop.
 
-This readme is ready to read so you don´t need to download the files, but, if you want to download the files,
+This readme is done so you don´t need to download the files but, if you want to download the files,
 the instructions to donwload it are here: [Download Instructions](#download-instructions).
 
-There are 150 pokemons everyone whit it's attacks, type, name and level, You start with 3 pokemons at random level between 1 and 7 pokemon and has to be leveling up by figthing,
+There are 150 pokemons each one with their own attacks, type, name and level, You start with 3 pokemons at random level between 1 and 7, you have to level up your pokemon by figthing,
 you can catch the enemy pokemon, restore health of your pokemon or access your inventory
 
 > [!NOTE]
@@ -32,13 +32,13 @@ Link to explain the Item Lottery section: [Item Lottery](#item-lottery).
 ## Profile
 You will have a Profile that you can access once you choose the pokemon.
 
-In the profile it will be the pokemons you have with all the attacks and stats and
+In the profile will be the pokemons you have with all the attacks and stats and
 the inventory of pokeballs and health potions
 
 [![imagen-2024-11-15-200115028.png](https://i.postimg.cc/w388frNW/imagen-2024-11-15-200115028.png)](https://postimg.cc/K3NH4JJL)
 
 ### Pokemon Stats
-The pokemons either if it's yours or enemy have the same number stats that will be:
+The pokemons either if it's yours or enemy, have the same number stats that will be:
 
 > * name
 > * health
@@ -58,15 +58,15 @@ Start with 3 pokemons and with a random level and health adapted to each level, 
 > for example if you are on level 1 you will only have the attacks from that level,
 > but, if your pokemon are in level 25 your pokemon will have the attacks of that level and below
 
-In the start you would choose a pokemon between these 3 pokemons you have
+In the start you will choose a pokemon between these 3 pokemons you have
 
 [![imagen-2024-11-12-230811686.png](https://i.postimg.cc/vT9YDf5j/imagen-2024-11-12-230811686.png)](https://postimg.cc/JHrV2y6c)
 
-and then it print the pokemons you've chosen vs the Enemy Pokemon
+and then it print the pokemons you've chosen vs the Enemy Pokemon.
 
 ### Enemy Pokemon
-The Enemy Pokemon will be choose randomness in the 150 pokemons we have and will have a diferent (higher, equal or less) level than you.
-> The level of the pokemon is based on your level but with a variety of between 0 or 4 level plus
+The Enemy Pokemon will be chosen randomly in the 150 pokemons we have and will have a different (higher, equal or less) level than you.
+> The level of the pokemon is based on your level but with a variety of between 0 or 4 level plus.
 
 [![imagen-2024-11-11-224147516.png](https://i.postimg.cc/W3Czp1cz/imagen-2024-11-11-224147516.png)](https://postimg.cc/Q9gh0stZ)
 
@@ -80,7 +80,7 @@ Every Attack will have some stats aswell, that will be:
 > * damage
 > * type
 
-The Damage will change by the type of the attack and the pokemons type.
+The Damage will change based on the type of the attack and the pokemons type.
 
 Link to Player Attack: [Player Attack](#player-attack).
 
@@ -89,17 +89,17 @@ Link to explain the Enemy Attack: [Enemy Attack](#enemy-attack).
 Link to explain the Damage: [Damage](#damage).
 
 ### Player Attack
-It will show you the attacks you have avalible by the level you are on or below
+It will show you the attacks you have avalible by the level you are on or below.
 
 [![imagen-2024-11-12-232423643.png](https://i.postimg.cc/0yj4fxB5/imagen-2024-11-12-232423643.png)](https://postimg.cc/LJdv4dSG)
 
-The Player would choose an attack of the pokemon you have chosen previously to fight and if input you give to the program is not what expected
-it will show a message of error
+The Player will choose an attack of the pokemon you have chosen previously to fight and if the input you give to the program is not expected
+it will show a error message.
 
 [![imagen-2024-11-12-232705887.png](https://i.postimg.cc/y8Gbp5Mm/imagen-2024-11-12-232705887.png)](https://postimg.cc/75g9fBYh)
 
 ### Enemy Attack 
-The Enemy will attack with a random attack that the pokemon have and it can be used in the level the pokemon is
+The Enemy will attack with a random attack that the pokemon has and it can be used in the level the pokemon is
 
 [![imagen-2024-11-12-230025441.png](https://i.postimg.cc/Kzf4xnr5/imagen-2024-11-12-230025441.png)](https://postimg.cc/BL8JCPz8)
 
@@ -107,7 +107,7 @@ The Enemy will attack with a random attack that the pokemon have and it can be u
 The damage will depend on the attack and the type of the pokemon that will receive it
 
 If the pokemon type is strong against the attack type the attack will receive a penalty of damage, dividing it by 1.25,
-If the pokemon type is weak afainst the attack type the attack will receive a boos of damage, multiplying it by 1.25
+If the pokemon type is weak against the attack type the attack will receive a boost of damage, multiplying it by 1.25
 
 [![imagen-2024-11-15-200005116.png](https://i.postimg.cc/DwQFD7B1/imagen-2024-11-15-200005116.png)](https://postimg.cc/MnGhfJkG)
 
@@ -117,34 +117,34 @@ The Pokemons you have will level up by fighting, every attack you do will give t
 [![imagen-2024-11-15-195924630.png](https://i.postimg.cc/ZRsJcjjg/imagen-2024-11-15-195924630.png)](https://postimg.cc/ph8NVfwY)
 
 ### Points
-The level 1 needed points to level up will be 20 and will be increasing by level in 5.
+The needed points to level up at level 1 will be 20 and will be increase by level in 5.
 
-The points will be given to the pokemon at the end of the battle if you win, and will have
+The points will be given to the pokemon at the end of the battle if you win, it will have
 a random chance based on the level of your pokemon compared to the other pokemon.
 
 [![imagen-2024-11-15-195836219.png](https://i.postimg.cc/Px5tY0bY/imagen-2024-11-15-195836219.png)](https://postimg.cc/8FxQVK0z)
 
 ### health
-The base health in level 1 will be 100 and with every level up it increase in 10 points of health
+The base health in level 1 will be 100 and with every level up it increases in 10 points of health
 
 ## Capture Pokemon
-You can capture pokemons by throwing them a pokeball you will have in the inventory.
+You can capture pokemons by throwing them a pokeball if you have at least 1 in the inventory.
 
 ### Chance of capturing
 There will be a chance of capturing one depending on the level and the health of the pokemon that will be captured.
-While the lower life the pokemon have, the higher will be the chances of capturing it,
-and while the higher is the pokemon level in compare to your pokemon level the less chances you have to capture it
+The lower the pokemon's life is, the higher will be the chances of capturing it,
+and the higher the pokemon's level is compared to your pokemon level the less chances you have to capture it.
 
 [![imagen-2024-11-15-195701498.png](https://i.postimg.cc/pXwX4GxM/imagen-2024-11-15-195701498.png)](https://postimg.cc/Xpgbygps)
 
 ## Health Potion
-You can use a Health Potion, which will be in your inventory, to cure 50 points of health to the pokemon you choose.
+You can use a Health Potion, which will be in your inventory, to cure 50 points of health of the pokemon you have chosen.
 If you don't have it in the inventory or already have the life full it will print a message to tell you what happened
 
 [![imagen-2024-11-15-195622678.png](https://i.postimg.cc/qMhvmfPG/imagen-2024-11-15-195622678.png)](https://postimg.cc/ykKKdGYJ)
 
 ## Item Lottery
-There will be given to you an object every time you finished a fight and have one or more pokemons alive,
+There will be given to you an object every time you finish a fight and have one or more pokemons alive,
 It will be a random chance to get a pokeball o a Health potion
 
 [![imagen-2024-11-15-195340600.png](https://i.postimg.cc/9X193jN5/imagen-2024-11-15-195340600.png)](https://postimg.cc/Sj2R8HhD)
