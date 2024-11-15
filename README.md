@@ -12,17 +12,27 @@ you can catch the enemy pokemon, restore health of your pokemon or access your i
 ## INDEX
 Link to Pokemon stats: [Pokemon Stats](#pokemon-stats).
 
+Link to explain the Profile section: [Profile](#profile).
+
 Link to explain the Enemy Pokemon section: [Pokemons](#pokemons).
 
 Link to explain the attacks and damage section: [Attacks and Damage](#attacks-and-damage).
+
+Link to explain the Leveling section: [Leveling](#leveling).
 
 Link to explain the capture pokemon section: [Capture Pokemon](#capture-pokemon).
 
 Link to explain the Health Potion section: [Health Potion](#health-potion).
 
-Link to explain the Leveling section: [Leveling](#leveling).
+## Profile
+You will have a Profile that you can access once you choose the pokemon.
 
-## Pokemon Stats
+In the profile it will be the pokemons you have with all the attacks and stats and
+the inventory of pokeballs and health potions
+
+> image of the profile function
+
+### Pokemon Stats
 The pokemons either if it's yours or enemy have the same number stats that will be:
 
 > * name
@@ -30,9 +40,6 @@ The pokemons either if it's yours or enemy have the same number stats that will 
 > * type
 > * attacks
 > * level
-
-Link to explained the Player pokemons section: [Player Pokemon](#player-pokemon).
-
 
 ## Pokemons
 
@@ -55,14 +62,20 @@ and then it print the pokemons you've chosen vs the Enemy Pokemon
 ### Enemy Pokemon
 The Enemy Pokemon will be choose randomness in the 150 pokemons we have and will have a diferent (higher, equal or less) level than you.
 > The level of the pokemon is based on your level but with a variety of between 0 or 4 level plus
-> 
+
 [![imagen-2024-11-11-224147516.png](https://i.postimg.cc/W3Czp1cz/imagen-2024-11-11-224147516.png)](https://postimg.cc/Q9gh0stZ)
 
 ## Attacks And Damage
 Every turn a pokemon will attack with a random attack based on the level of the pokemon.
 
-The Damage will change by the type of the attack and the pokemons type, will increase if the pokemon is weak in front of the attacks
-and will decrease if the pokemon is strong against the attacks
+Every Attack will have some stats aswell, that will be:
+
+> * name
+> * Min Level
+> * damage
+> * type
+
+The Damage will change by the type of the attack and the pokemons type.
 
 Link to Player Attack: [Player Attack](#player-attack).
 
