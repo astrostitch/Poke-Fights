@@ -35,7 +35,7 @@ You will have a Profile that you can access once you choose the pokemon.
 In the profile it will be the pokemons you have with all the attacks and stats and
 the inventory of pokeballs and health potions
 
-> image of the profile function
+[![imagen-2024-11-15-200115028.png](https://i.postimg.cc/w388frNW/imagen-2024-11-15-200115028.png)](https://postimg.cc/K3NH4JJL)
 
 ### Pokemon Stats
 The pokemons either if it's yours or enemy have the same number stats that will be:
@@ -109,12 +109,12 @@ The damage will depend on the attack and the type of the pokemon that will recei
 If the pokemon type is strong against the attack type the attack will receive a penalty of damage, dividing it by 1.25,
 If the pokemon type is weak afainst the attack type the attack will receive a boos of damage, multiplying it by 1.25
 
-> image damagge function
+[![imagen-2024-11-15-200005116.png](https://i.postimg.cc/DwQFD7B1/imagen-2024-11-15-200005116.png)](https://postimg.cc/MnGhfJkG)
 
 ## Leveling
 The Pokemons you have will level up by fighting, every attack you do will give the pokemon points to level up
 
-> image of the level up function
+[![imagen-2024-11-15-195924630.png](https://i.postimg.cc/ZRsJcjjg/imagen-2024-11-15-195924630.png)](https://postimg.cc/ph8NVfwY)
 
 ### Points
 The level 1 needed points to level up will be 20 and will be increasing by level in 5.
@@ -122,7 +122,7 @@ The level 1 needed points to level up will be 20 and will be increasing by level
 The points will be given to the pokemon at the end of the battle if you win, and will have
 a random chance based on the level of your pokemon compared to the other pokemon.
 
-> image of the points given
+[![imagen-2024-11-15-195836219.png](https://i.postimg.cc/Px5tY0bY/imagen-2024-11-15-195836219.png)](https://postimg.cc/8FxQVK0z)
 
 ### health
 The base health in level 1 will be 100 and with every level up it increase in 10 points of health
@@ -135,19 +135,19 @@ There will be a chance of capturing one depending on the level and the health of
 While the lower life the pokemon have, the higher will be the chances of capturing it,
 and while the higher is the pokemon level in compare to your pokemon level the less chances you have to capture it
 
-> image of the capture function
+[![imagen-2024-11-15-195701498.png](https://i.postimg.cc/pXwX4GxM/imagen-2024-11-15-195701498.png)](https://postimg.cc/Xpgbygps)
 
 ## Health Potion
 You can use a Health Potion, which will be in your inventory, to cure 50 points of health to the pokemon you choose.
 If you don't have it in the inventory or already have the life full it will print a message to tell you what happened
 
->image of the Health potion function
+[![imagen-2024-11-15-195622678.png](https://i.postimg.cc/qMhvmfPG/imagen-2024-11-15-195622678.png)](https://postimg.cc/ykKKdGYJ)
 
 ## Item Lottery
 There will be given to you an object every time you finished a fight and have one or more pokemons alive,
 It will be a random chance to get a pokeball o a Health potion
 
->image to item lottery function
+[![imagen-2024-11-15-195340600.png](https://i.postimg.cc/9X193jN5/imagen-2024-11-15-195340600.png)](https://postimg.cc/Sj2R8HhD)
 
 ## To Do
 
@@ -169,7 +169,7 @@ Link to Install Visual Studio Code: [Install Visual Studio Code](#install-visual
 ### Download
 click the blue button that says "code" and download the Zip
 
-> image to download it
+[![imagen-2024-11-15-200320227.png](https://i.postimg.cc/pdXTJ9Rm/imagen-2024-11-15-200320227.png)](https://postimg.cc/rD3M8wdT)
 
 extract the zip
 
@@ -186,7 +186,7 @@ To Install for linux it You have to check if the interpreter is "python 3.11.10 
 
 To Install for windows it You have to check if the interpreter is "python 3.11.9 ('.venv':venv)"
 
->image to refer the interpreter
+[![imagen-2024-11-15-195230456.png](https://i.postimg.cc/CKWNqVp6/imagen-2024-11-15-195230456.png)](https://postimg.cc/wtQJCZvh)
 
 open a new terminal and go to "Pokefight"
 ```
