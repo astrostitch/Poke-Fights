@@ -194,5 +194,5 @@ python Python PokemonCombatMain.py
 ```
 
 ## TO DO
-- [X] \Put colors in Terminal
-- [ ] \Make an .exe to execute
+- [x] Put colors in Terminal
+- [ ] Make an .exe to execute
