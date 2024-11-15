@@ -174,8 +174,8 @@ To Install it You have to check if the interpreter is "python 3.11.10 ('.env':ve
 
 open a new terminal and go to "Pokefight"
 
->imagen del comando para entrar en la carpeta
+>cd Pokefight
 
 Run "Python PokemonCombatMain.py"
 
->imagen del comando para ejecutar el archivo
+>python Python PokemonCombatMain.py
