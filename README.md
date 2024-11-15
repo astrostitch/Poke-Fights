@@ -18,6 +18,8 @@ Link to explain the attacks and damage section: [Attacks and Damage](#attacks-an
 
 Link to explain the capture pokemon section: [Capture Pokemon](#capture-pokemon).
 
+Link to explain the Health Potion section: [Health Potion](#health-potion).
+
 ## Pokemon Stats
 The pokemons either if it's yours or enemy have the same number stats that will be:
 
@@ -100,5 +102,10 @@ and while the higher is the pokemon level in compare to your pokemon level the l
 
 > image of the capture function
 
+## Health Potion
+You can use a Health Potion, which will be in your inventory, to cure 50 points of health to the pokemon you choose.
+If you don't have it in the inventory or already have the life full it will print a message to tell you what happened
+
+>image of the Health potion function
 
 
