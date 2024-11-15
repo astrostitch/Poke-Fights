@@ -9,6 +9,9 @@ the instructions to donwload it are here: [Download Instructions](#download-inst
 There are 150 pokemons everyone whit it's attacks, type, name and level, You start with 3 pokemons at random level between 1 and 7 pokemon and has to be leveling up by figthing,
 you can catch the enemy pokemon, restore health of your pokemon or access your inventory
 
+> [!NOTE]
+> You can make an appointment or contribute to this little game by downloading it
+
 ## INDEX
 Link to Pokemon stats: [Pokemon Stats](#pokemon-stats).
 
@@ -146,6 +149,15 @@ It will be a random chance to get a pokeball o a Health potion
 
 >image to item lottery function
 
+## To Do
+
+- [X] \Put colors in Terminal
+- [ ] \Make an .exe to execute
+
+
+> [!IMPORTANT]
+> Below is how to install it downloading it or by git
+
 ## Download Instructions
 
 Link to Download: [Download](#download).
@@ -174,7 +186,7 @@ To Install it You have to check if the interpreter is "python 3.11.10 ('.env':ve
 
 open a new terminal and go to "Pokefight"
 
->cd Pokefight
+>cd PokeFight
 
 Run "Python PokemonCombatMain.py"
 
