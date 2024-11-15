@@ -91,7 +91,7 @@ If the pokemon type is weak afainst the attack type the attack will receive a bo
 ## Capture Pokemon
 You can capture pokemons by throwing them a pokeball you will have in the inventory.
 
-## Chance of capturing
+### Chance of capturing
 There will be a chance of capturing one depending on the level and the health of the pokemon that will be captured.
 While the lower life the pokemon have, the higher will be the chances of capturing it,
 and while the higher is the pokemon level in compare to your pokemon level the less chances you have to capture it
